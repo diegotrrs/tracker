@@ -1,18 +1,20 @@
 package com.example.tracker.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 
+@Dao
 interface ExerciseDao {
-    @Insert
-    fun insert(exercise: Exercise)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(exercise: Exercise)
 
-    @Query("DELETE FROM EXERCISES")
-    fun deleteAllExercises()
+    @Query("DELETE FROM exercises")
+    suspend fun deleteAll()
 
-    @Query("SELECT * FROM EXERCISES")
-    fun getAllExercises(exercise: Exercise): LiveData<Exercise>
+    @Query("SELECT * FROM exercises")
+    fun getAll(): LiveData<List<Exercise>>
+
+
 }
+
