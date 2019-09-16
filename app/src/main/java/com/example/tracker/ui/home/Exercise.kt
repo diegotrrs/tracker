@@ -5,4 +5,4 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "exercises")
-data class Exercise(@PrimaryKey @ColumnInfo(name = "name") val word: String)
+data class Exercise(@PrimaryKey @ColumnInfo(name = "name") val name: String)

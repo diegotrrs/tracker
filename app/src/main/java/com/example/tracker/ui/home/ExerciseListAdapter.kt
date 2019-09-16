@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
@@ -16,7 +15,7 @@ class ExerciseListAdapter internal constructor(context: Context) : RecyclerView.
     private var exercises = emptyList<Exercise>();
 
     inner class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val item : TextView = itemView.findViewById(R.id.textView)
+        val item : TextView = itemView.findViewById(R.id.nameTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -26,7 +25,7 @@ class ExerciseListAdapter internal constructor(context: Context) : RecyclerView.
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val current = exercises[position]
-        holder.item.text = current.description
+        holder.item.text = current.name
     }
 
     internal fun setExercises(exercises: List<Exercise>) {

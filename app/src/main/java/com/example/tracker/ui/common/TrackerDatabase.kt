@@ -58,10 +58,10 @@ abstract class TrackerDatabase : RoomDatabase() {
             // Not needed if you only populate on creation.
             exerciseDao.deleteAll()
 
-            var exercise = Exercise("Ex1")
-            exerciseDao.insert(exercise)
-            exercise = Exercise("Ex2")
-            exerciseDao.insert(exercise)
+            for(i in 1..15){
+                exerciseDao.insert(Exercise("Ex $i"))
+            }
+
         }
     }
 
