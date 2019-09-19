@@ -1,8 +1,8 @@
-package com.example.tracker.ui.common
+package com.example.tracker.home
 
 import androidx.lifecycle.LiveData
-import com.example.tracker.ui.home.Exercise
-import com.example.tracker.ui.home.ExerciseDao
+import com.example.tracker.home.workouts.Exercise
+import com.example.tracker.home.workouts.ExerciseDao
 
 class Repository(private val exercisesDao: ExerciseDao){
     val allExercises : LiveData<List<Exercise>> = exercisesDao.getAll();

@@ -1,4 +1,4 @@
-package com.example.tracker.ui.home
+package com.example.tracker.home.workouts
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 
-class HomeFragment : Fragment() {
+class WorkoutsFragment : Fragment() {
 
     private lateinit var exercisesViewModel: ExercisesViewModel
 
@@ -21,18 +21,18 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.workouts_fragment, container, false)
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
 
-        val adapter = ExerciseListAdapter(requireContext() )
+        val adapter = WorkoutsListAdapter(requireContext() )
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
 
         exercisesViewModel.allExercises.observe(this, Observer { exercises ->
-            exercises?.let{ adapter.setExercises(it)}
+            exercises?.let{ adapter.setWorkouts(it)}
         })
         return root;
 

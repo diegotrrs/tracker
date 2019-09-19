@@ -1,11 +1,11 @@
-package com.example.tracker.ui.home
+package com.example.tracker.home.workouts
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.tracker.ui.common.Database
-import com.example.tracker.ui.common.Repository
+import com.example.tracker.home.TrackerDatabase
+import com.example.tracker.home.Repository
 import kotlinx.coroutines.launch
 
 class ExercisesViewModel(application: Application) : AndroidViewModel(application) {
@@ -14,7 +14,7 @@ class ExercisesViewModel(application: Application) : AndroidViewModel(applicatio
     val allExercises: LiveData<List<Exercise>>
 
     init {
-       var exerciseDao = Database.getDatabase(application, viewModelScope).exercisesDao();
+       var exerciseDao = TrackerDatabase.getDatabase(application, viewModelScope).exercisesDao();
        repository = Repository(exerciseDao)
         allExercises = repository.allExercises
     }

@@ -1,4 +1,4 @@
-package com.example.tracker.ui.settings
+package com.example.tracker.home.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         settingsViewModel =
             ViewModelProviders.of(this).get(SettingsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
+        val root = inflater.inflate(R.layout.settings_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
         settingsViewModel.text.observe(this, Observer {
             textView.text = it

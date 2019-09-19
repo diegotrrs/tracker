@@ -8,33 +8,33 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 
-class ExerciseListAdapter internal constructor(context: Context) : RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder>(){
+class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
-    private var exercises = emptyList<Exercise>();
+    private var workouts = emptyList<Exercise>();
 
-    inner class ExerciseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class WorkoutsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val item : TextView = itemView.findViewById(R.id.nameTextView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
-        val itemView = inflater.inflate(R.layout.list_item_workout, parent, false)
-        return ExerciseViewHolder(itemView )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
+        val itemView = inflater.inflate(R.layout.workouts_list_item, parent, false)
+        return WorkoutsViewHolder(itemView )
     }
 
-    override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
-        val current = exercises[position]
+    override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
+        val current = workouts[position]
         holder.item.text = current.name
     }
 
-    internal fun setExercises(exercises: List<Exercise>) {
-        this.exercises = exercises
+    internal fun setWorkouts(exercises: List<Exercise>) {
+        this.workouts = exercises
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return this.exercises.size
+        return this.workouts.size
     }
 
 

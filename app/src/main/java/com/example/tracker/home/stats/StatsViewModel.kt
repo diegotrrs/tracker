@@ -1,4 +1,4 @@
-package com.example.tracker.ui.stats
+package com.example.tracker.home.stats
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

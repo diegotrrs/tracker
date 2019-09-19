@@ -1,4 +1,4 @@
-package com.example.tracker.ui.home
+package com.example.tracker.home.workouts
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

@@ -3,29 +3,32 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
     </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- The default font for RecyclerView items is too small.
    The margin is a simple delimiter between the words. -->
     <style name="exercise_name">
+        <item name="android:fontFamily">@font/muli_semibold</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">26dp</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">6dp</item>
         <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+
+        <item name="android:background">@color/toolbarBackground</item>
+    </style>
+
+    <style name="BottomNavigation">
+        <item name="android:background">@color/toolbarBackground</item>
+        <item name="itemTextColor">@color/black</item>
+        <item name="itemIconTint">@color/black</item>
+        <item name="android:fontFamily">@font/muli_semibold</item>
     </style>
 
 </resources>
