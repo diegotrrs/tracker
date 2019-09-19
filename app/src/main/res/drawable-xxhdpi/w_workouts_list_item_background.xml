@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!--<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <solid android:color="#FFFFFF"/>
+    <stroke android:width="3dip" android:color="#B1BCBE" />
+    <corners android:radius="10dip"/>
+    <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
+</shape>-->
+
+
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval">
+
+            <solid
+                android:color="#666666"/>
+
+            <size
+                android:width="120dp"
+                android:height="120dp"/>
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle" >
+            <solid android:color="#1EFF00FF" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shape="rectangle">
+
+            // The width and color of the border
+
+            <stroke
+                android:width="1dp"
+                android:color="@android:color/black" />
+
+            // The desired corner radius. reduce it to keep it less rounded
+
+            <corners android:radius="5dp" />
+
+            // Add your desired padding
+
+            <padding
+                android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp"
+                android:top="10dp"></padding>
+
+        </shape>
+    </item>
+
+</layer-list>

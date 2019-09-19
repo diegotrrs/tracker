@@ -1,32 +1,36 @@
-package com.example.tracker.ui.common
+package com.example.tracker.home
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.tracker.ui.home.Exercise
+import com.example.tracker.home.workouts.Exercise
 import kotlinx.coroutines.CoroutineScope
-import com.example.tracker.ui.home.ExerciseDao
+import com.example.tracker.home.workouts.ExerciseDao
 import kotlinx.coroutines.launch
 
 @Database(entities = [Exercise::class], version = 1)
-abstract class TrackerDatabase : RoomDatabase() {
+abstract class Database : RoomDatabase() {
 
     abstract fun exercisesDao(): ExerciseDao
 
     companion object {
         @Volatile
-        private var trackerDatabase: TrackerDatabase? = null;
+        private var database: com.example.tracker.home.Database? = null;
 
-        fun getDatabase(context: Context, scope: CoroutineScope): TrackerDatabase {
-            return trackerDatabase ?: synchronized(this) {
+        fun getDatabase(context: Context, scope: CoroutineScope): com.example.tracker.home.Database {
+            return database ?: synchronized(this) {
                 var instance = Room.databaseBuilder(
                     context.applicationContext,
-                    TrackerDatabase::class.java,
+                    Database::class.java,
                     "tracker_database"
-                ).fallbackToDestructiveMigration().addCallback(Callback(scope)).build()
-                trackerDatabase = instance
+                ).fallbackToDestructiveMigration().addCallback(
+                    Callback(
+                        scope
+                    )
+                ).build()
+                database = instance
                 instance
             }
         }
@@ -40,7 +44,7 @@ abstract class TrackerDatabase : RoomDatabase() {
                 super.onOpen(db)
                 // If you want to keep the data through app restarts,
                 // comment out the following line.
-                trackerDatabase?.let { database ->
+                database?.let { database ->
                     scope.launch {
                         populateDatabase(database.exercisesDao())
                     }
