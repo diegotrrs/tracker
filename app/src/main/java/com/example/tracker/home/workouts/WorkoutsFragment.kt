@@ -31,8 +31,8 @@ class WorkoutsFragment : Fragment() {
 
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
 
-        exercisesViewModel.allExercises.observe(this, Observer { exercises ->
-            exercises?.let{ adapter.setWorkouts(it)}
+        exercisesViewModel.allWorkouts.observe(this, Observer { allWorkouts ->
+            allWorkouts?.let{ adapter.setWorkouts(it)}
         })
         return root;
 

@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.home.common.data.entities.XWorkout
 
 class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
-    private var workouts = emptyList<Exercise>();
+    private var workouts = emptyList<XWorkout>();
 
     inner class WorkoutsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val item : TextView = itemView.findViewById(R.id.nameTextView)
@@ -25,11 +26,11 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
 
     override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
         val current = workouts[position]
-        holder.item.text = current.name
+        holder.item.text = current.durationMs.toString()
     }
 
-    internal fun setWorkouts(exercises: List<Exercise>) {
-        this.workouts = exercises
+    internal fun setWorkouts(XWorkouts: List<XWorkout>) {
+        this.workouts = XWorkouts
         notifyDataSetChanged()
     }
 
