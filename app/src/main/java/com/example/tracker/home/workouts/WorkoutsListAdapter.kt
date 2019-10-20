@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.home.common.data.entities.XUserAndWorkouts
 import com.example.tracker.home.common.data.entities.XWorkout
 
 class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
@@ -29,8 +30,8 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
         holder.item.text = current.durationMs.toString()
     }
 
-    internal fun setWorkouts(XWorkouts: List<XWorkout>) {
-        this.workouts = XWorkouts
+    internal fun setWorkouts(workouts: List<XWorkout>) {
+        this.workouts = workouts
         notifyDataSetChanged()
     }
 

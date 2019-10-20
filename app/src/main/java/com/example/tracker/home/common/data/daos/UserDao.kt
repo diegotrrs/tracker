@@ -6,11 +6,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.tracker.home.common.data.entities.XUser
+import com.example.tracker.home.common.data.entities.XUserAndWorkouts
+import com.example.tracker.home.common.data.entities.XWorkoutAndExercises
 
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(XUser: XUser): Long
+
+    @Query("SELECT * FROM users WHERE username =:username")
+    fun getUserWorkouts(username: String): LiveData<List<XUserAndWorkouts>>
 
     @Query("DELETE FROM users")
     suspend fun deleteAll()

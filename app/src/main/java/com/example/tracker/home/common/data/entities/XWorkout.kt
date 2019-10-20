@@ -23,10 +23,10 @@ data class XWorkout(
     @ColumnInfo(name="finishedMs")
     var finishedMs: Long = 0,
     @ColumnInfo(name = "userId")
-    var userId: Long
+    var userId: Long = 0
 ){
     @Ignore
-    constructor( durationMs: Long, userId: Long ) : this(0, durationMs,0,0, userId)
+    constructor( durationMs: Long, userId: Long) : this(0, durationMs,0,0, userId)
 
 
 }

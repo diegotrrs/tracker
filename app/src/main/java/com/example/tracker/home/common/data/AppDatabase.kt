@@ -71,7 +71,34 @@ abstract class AppDatabase : RoomDatabase() {
 
 
         suspend fun populateDatabase(unitDao: UnitDao, exerciseDao: ExerciseDao,
-                                     workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao       ) {
+                                     workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao) {
+
+            //unitDao.deleteAll()
+            //setsDao.deleteAll()
+            //exerciseDao.deleteAll()
+           // userDao.deleteAll()
+           // workoutDao.deleteAll()
+
+
+            val user1 = userDao.insert( XUser("jctorres"))
+            var workout1 = workoutDao.insert(XWorkout( 3000, user1))
+            var workout2 = workoutDao.insert(XWorkout( 4000, user1))
+            var workout3 = workoutDao.insert(XWorkout( 5000, user1))
+
+            val userId = userDao.insert( XUser("cfreese"))
+            var workout4 = workoutDao.insert(XWorkout( 6000, userId))
+            var workout5 = workoutDao.insert(XWorkout( 7000, userId))
+            var workout6 = workoutDao.insert(XWorkout( 8000, userId))
+
+
+            /*var exercise1 = exerciseDao.insert(XExercise(workout1, "leg press"))
+            var exercise2 = exerciseDao.insert(XExercise(workout1, "leg curl"))
+            var exercise3 = exerciseDao.insert(XExercise(workout1, "leg extension"))
+
+            var exercise4 = exerciseDao.insert(XExercise(workout2, "bench press"))
+            var exercise5 = exerciseDao.insert(XExercise(workout2, "cable curl"))*/
+
+
             // Start the app with a clean appDatabase every time.
             // Not needed if you only populate on creation.
             /*unitDao.deleteAll()

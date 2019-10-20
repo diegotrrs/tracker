@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.tracker.home.common.data.entities.XWorkout
-import com.example.tracker.home.common.data.entities.XWorkoutAndExercisesAndSets
+import com.example.tracker.home.common.data.entities.XWorkoutAndExercises
 
 @Dao
 interface WorkoutDao {
@@ -16,11 +16,9 @@ interface WorkoutDao {
     @Query("DELETE FROM workouts")
     suspend fun deleteAll()
 
-    //@Query("SELECT * FROM workouts")
-    //fun getAll(): LiveData<List<XWorkout>>
 
-    @Query("SELECT * FROM workouts")
-    fun getAll(): LiveData<List<XWorkoutAndExercisesAndSets>>
+    @Query("SELECT * FROM workouts WHERE durationMs =:duration")
+    fun findByWorkoutDuration(duration: Long): LiveData<List<XWorkoutAndExercises>>
 
     /*@Query("SELECT * FROM workouts " +
             "INNER JOIN workoutExercises ON workouts.id = workoutExercises.workoutId " +
@@ -30,6 +28,7 @@ interface WorkoutDao {
 
     /*@Query("SELECT * FROM workouts WHERE id = :workoutId")
     fun loadWorkout(workoutId: Long): Single<TripAndListsAndListItems>*/
+
 
 
 

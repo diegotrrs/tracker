@@ -19,8 +19,10 @@ data class XExercise(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     @ColumnInfo(name = "workoutId")
-    var workoutId: Long = 0
+    var workoutId: Long = 0,
+    @ColumnInfo(name = "name")
+    var name: String = ""
 ){
     @Ignore
-    constructor(workoutId: Long) : this(0, workoutId)
+    constructor(workoutId: Long, name: String) : this(0, workoutId, name)
 }
