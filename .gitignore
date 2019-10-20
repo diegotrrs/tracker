@@ -1,6 +1,7 @@
 
 app/src/.DS_Store
 app/.DS_Store
+.gradle/5.4.1/executionHistory/executionHistory.bin
 app/proguard-rules.pro
 app/src/main/java/com/example/tracker/.DS_Store
 # Windows thumbnail db
@@ -9,6 +10,7 @@ Thumbs.db
 # OSX files
 .DS_Store
 **/.DS_Store
+.idea/workspace.xml
 
 # built application files
 *.apk
@@ -46,3 +48,4 @@ build
 *.ipr
 *~
 *.swp
+.gradle/5.4.1/executionHistory/executionHistory.bin

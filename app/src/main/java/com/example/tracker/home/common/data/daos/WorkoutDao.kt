@@ -16,11 +16,11 @@ interface WorkoutDao {
     @Query("DELETE FROM workouts")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM workouts")
-    fun getAll(): LiveData<List<XWorkout>>
-
     //@Query("SELECT * FROM workouts")
-    //fun getAll(): LiveData<List<XWorkoutAndExercisesAndSets>>
+    //fun getAll(): LiveData<List<XWorkout>>
+
+    @Query("SELECT * FROM workouts")
+    fun getAll(): LiveData<List<XWorkoutAndExercisesAndSets>>
 
     /*@Query("SELECT * FROM workouts " +
             "INNER JOIN workoutExercises ON workouts.id = workoutExercises.workoutId " +

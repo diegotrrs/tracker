@@ -74,7 +74,7 @@ abstract class AppDatabase : RoomDatabase() {
                                      workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao       ) {
             // Start the app with a clean appDatabase every time.
             // Not needed if you only populate on creation.
-            unitDao.deleteAll()
+            /*unitDao.deleteAll()
             userDao.deleteAll()
             workoutDao.deleteAll()
             setsDao.deleteAll()
@@ -117,8 +117,10 @@ abstract class AppDatabase : RoomDatabase() {
             var set21 = setsDao.insert(XSet(6, 8, exercise2))
             println("***** SET 21 ID ${set21} ****")
             var set22 = setsDao.insert(XSet(7, 8, exercise2))
-            println("***** SET 22 ID ${set22} ****")
+            println("***** SET 22 ID ${set22} ****")*/
         }
+
+
     }
 
 }
