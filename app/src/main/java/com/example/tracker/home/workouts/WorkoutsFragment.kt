@@ -33,11 +33,11 @@ class WorkoutsFragment : Fragment() {
 
         exercisesViewModel.workouts.observe(this, Observer { workouts ->
             workouts?.let{
-                println("************************ Fragment XUserAndWorkouts:  ${it.size} UserAndWorkouts")
+                println("************************ Fragment XUserAndWorkoutsAndExercises:  ${it.size} UserAndWorkouts")
                 if(it.size > 0){
                     println("${it[0].user} user" )
-                    println("${it[0].workouts.size} workouts" )
-                    adapter.setWorkouts(it[0].workouts)
+                    println("${it[0].workoutsAndExercises.size} workoutsAndExercises" )
+                    adapter.setWorkoutsAndExercises(it[0].workoutsAndExercises)
                 }
             }
         })

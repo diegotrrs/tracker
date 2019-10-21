@@ -75,28 +75,32 @@ abstract class AppDatabase : RoomDatabase() {
 
             //unitDao.deleteAll()
             //setsDao.deleteAll()
-            //exerciseDao.deleteAll()
-           // userDao.deleteAll()
-           // workoutDao.deleteAll()
+            userDao.deleteAll()
+            workoutDao.deleteAll()
+            exerciseDao.deleteAll()
+
+            val jc = userDao.insert( XUser("jctorres"))
+            var workoutjc1 = workoutDao.insert(XWorkout( 3000, jc))
+            var exercisejc4 = exerciseDao.insert(XExercise(workoutjc1, "jc bench press"))
+            var exercisejc5 = exerciseDao.insert(XExercise(workoutjc1, "jc cable curl"))
+
+            var workoutjc2 = workoutDao.insert(XWorkout( 4000, jc))
+            var exercisejc1 = exerciseDao.insert(XExercise(workoutjc2, "jc leg press"))
+            var exercisejc2 = exerciseDao.insert(XExercise(workoutjc2, "jc leg curl"))
 
 
-            val user1 = userDao.insert( XUser("jctorres"))
-            var workout1 = workoutDao.insert(XWorkout( 3000, user1))
-            var workout2 = workoutDao.insert(XWorkout( 4000, user1))
-            var workout3 = workoutDao.insert(XWorkout( 5000, user1))
+            val conrad = userDao.insert( XUser("cfreese"))
+            var workoutc1 = workoutDao.insert(XWorkout( 6000, conrad))
+            var exercisec4 = exerciseDao.insert(XExercise(workoutc1, "c bench press"))
+            var exercisec5 = exerciseDao.insert(XExercise(workoutc1, "c cable curl"))
 
-            val userId = userDao.insert( XUser("cfreese"))
-            var workout4 = workoutDao.insert(XWorkout( 6000, userId))
-            var workout5 = workoutDao.insert(XWorkout( 7000, userId))
-            var workout6 = workoutDao.insert(XWorkout( 8000, userId))
+            var workoutc2 = workoutDao.insert(XWorkout( 7000, conrad))
+            var exercisec1 = exerciseDao.insert(XExercise(workoutc2, "c leg press"))
+            var exercisec2 = exerciseDao.insert(XExercise(workoutc2, "c leg curl"))
 
-
-            /*var exercise1 = exerciseDao.insert(XExercise(workout1, "leg press"))
-            var exercise2 = exerciseDao.insert(XExercise(workout1, "leg curl"))
-            var exercise3 = exerciseDao.insert(XExercise(workout1, "leg extension"))
-
-            var exercise4 = exerciseDao.insert(XExercise(workout2, "bench press"))
-            var exercise5 = exerciseDao.insert(XExercise(workout2, "cable curl"))*/
+            var workoutc3 = workoutDao.insert(XWorkout( 8000, conrad))
+            var exercisec6 = exerciseDao.insert(XExercise(workoutc3, "c squat"))
+            var exercisec7 = exerciseDao.insert(XExercise(workoutc3, "c deadlift"))
 
 
             // Start the app with a clean appDatabase every time.

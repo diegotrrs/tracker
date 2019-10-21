@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         /*// Handle presses on the action bar menu items
-        when (item.itemId) {
+        when (workoutName.itemId) {
             R.id.action_cut -> {
                 text_view.text = "Cut"
                 return true

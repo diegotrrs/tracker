@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.home.common.data.entities.XUserAndWorkouts
-import com.example.tracker.home.common.data.entities.XWorkout
+import com.example.tracker.home.common.data.entities.XWorkoutAndExercises
 
 class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
-    private var workouts = emptyList<XWorkout>();
+    private var workoutsAndExercises = emptyList<XWorkoutAndExercises>();
 
     inner class WorkoutsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val item : TextView = itemView.findViewById(R.id.nameTextView)
+        val workoutName : TextView = itemView.findViewById(R.id.nameTextView)
+        val exercisesText : TextView = itemView.findViewById(R.id.exercisesTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
@@ -26,17 +26,23 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
-        val current = workouts[position]
-        holder.item.text = current.durationMs.toString()
+        val current = workoutsAndExercises[position]
+        var exercises = ""
+        current.exercises.forEach {
+            println("Exercise ${it}")
+            exercises += "${it.name} \n"
+        }
+        holder.workoutName.text =  current.workout.durationMs.toString()
+        holder.exercisesText.text =  exercises
     }
 
-    internal fun setWorkouts(workouts: List<XWorkout>) {
-        this.workouts = workouts
+    internal fun setWorkoutsAndExercises(workoutsAndExercises: List<XWorkoutAndExercises>) {
+        this.workoutsAndExercises = workoutsAndExercises
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return this.workouts.size
+        return this.workoutsAndExercises.size
     }
 
 
