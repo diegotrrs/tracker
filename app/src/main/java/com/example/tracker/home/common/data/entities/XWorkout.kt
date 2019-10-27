@@ -15,7 +15,8 @@ import androidx.room.*
     indices = arrayOf(Index(value = ["userId"]))
 )
 data class XWorkout(
-    @PrimaryKey(autoGenerate = true) var id: Long,
+    @PrimaryKey(autoGenerate = true)
+    var id: Long,
     @ColumnInfo(name="durationMs")
     var durationMs: Long = 0,
     @ColumnInfo(name="startedMs")

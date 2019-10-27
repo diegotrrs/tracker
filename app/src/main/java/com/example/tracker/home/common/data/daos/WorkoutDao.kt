@@ -1,13 +1,10 @@
 package com.example.tracker.home.common.data.daos
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.tracker.home.common.data.entities.XUserAndWorkouts
 import com.example.tracker.home.common.data.entities.XWorkout
-import com.example.tracker.home.common.data.entities.XWorkoutAndExercises
 
 @Dao
 interface WorkoutDao {
@@ -39,8 +36,5 @@ interface WorkoutDao {
             "WHERE workouts.userId=:userId")
     fun getWorkoutsByUser(userId: Int): LiveData<List<XWorkout>>*/
 
-
-    @Query("SELECT * FROM workouts WHERE id =:workoutId")
-    fun getWorkoutExercises(workoutId: String): LiveData<List<XWorkoutAndExercises>>
 
 }

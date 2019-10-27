@@ -13,6 +13,6 @@ class XWorkoutAndExercises(
         entity = XExercise::class
 
     )
-    var exercises: List<XExercise> = listOf()
+    var exercises: List<XExerciseAndSets> = listOf()
 
 )

@@ -30,7 +30,11 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
         var exercises = ""
         current.exercises.forEach {
             println("Exercise ${it}")
-            exercises += "${it.name} \n"
+            exercises += "\n ${it.exercise.name} \n"
+            it.sets.forEach {
+                exercises += " \t> ${it.weight}  ${it.reps}\n"
+            }
+
         }
         holder.workoutName.text =  current.workout.durationMs.toString()
         holder.exercisesText.text =  exercises

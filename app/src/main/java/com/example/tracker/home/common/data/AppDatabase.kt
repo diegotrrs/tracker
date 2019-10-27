@@ -68,87 +68,42 @@ abstract class AppDatabase : RoomDatabase() {
          * If you want to start with more words, just add them.
          */
 
-
-
         suspend fun populateDatabase(unitDao: UnitDao, exerciseDao: ExerciseDao,
                                      workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao) {
 
-            //unitDao.deleteAll()
-            //setsDao.deleteAll()
+            println(" *** POPULATING DATABASE ***")
+            unitDao.deleteAll()
+            setsDao.deleteAll()
             userDao.deleteAll()
             workoutDao.deleteAll()
             exerciseDao.deleteAll()
+
+
+            val benchPress = unitDao.insert(XUnit("bench press"))
+            val cableCurl = unitDao.insert(XUnit("cable curl"))
+            val legPress = unitDao.insert(XUnit("leg press"))
+            val legCurl = unitDao.insert(XUnit("leg curl"))
 
             val jc = userDao.insert( XUser("jctorres"))
-            var workoutjc1 = workoutDao.insert(XWorkout( 3000, jc))
-            var exercisejc4 = exerciseDao.insert(XExercise(workoutjc1, "jc bench press"))
-            var exercisejc5 = exerciseDao.insert(XExercise(workoutjc1, "jc cable curl"))
+            val workoutjc1 = workoutDao.insert(XWorkout( 3000, jc))
+            val exercisejc4 = exerciseDao.insert(XExercise(workoutjc1, "bench press"))
+            setsDao.insert(XSet(5.5, 8,  exercisejc4))
+            setsDao.insert(XSet(5.5, 8,  exercisejc4))
 
-            var workoutjc2 = workoutDao.insert(XWorkout( 4000, jc))
-            var exercisejc1 = exerciseDao.insert(XExercise(workoutjc2, "jc leg press"))
-            var exercisejc2 = exerciseDao.insert(XExercise(workoutjc2, "jc leg curl"))
+            val exercisejc5 = exerciseDao.insert(XExercise(workoutjc1, "cable curl"))
+            setsDao.insert(XSet(6.5, 8,  exercisejc5))
+            setsDao.insert(XSet(6.5, 8,  exercisejc5))
 
+            val workoutjc2 = workoutDao.insert(XWorkout( 4000, jc))
+            val exercisejc1 = exerciseDao.insert(XExercise(workoutjc2, "leg press"))
+            setsDao.insert(XSet(7.5, 8,  exercisejc1))
+            setsDao.insert(XSet(7.5, 8,  exercisejc1))
 
-            val conrad = userDao.insert( XUser("cfreese"))
-            var workoutc1 = workoutDao.insert(XWorkout( 6000, conrad))
-            var exercisec4 = exerciseDao.insert(XExercise(workoutc1, "c bench press"))
-            var exercisec5 = exerciseDao.insert(XExercise(workoutc1, "c cable curl"))
-
-            var workoutc2 = workoutDao.insert(XWorkout( 7000, conrad))
-            var exercisec1 = exerciseDao.insert(XExercise(workoutc2, "c leg press"))
-            var exercisec2 = exerciseDao.insert(XExercise(workoutc2, "c leg curl"))
-
-            var workoutc3 = workoutDao.insert(XWorkout( 8000, conrad))
-            var exercisec6 = exerciseDao.insert(XExercise(workoutc3, "c squat"))
-            var exercisec7 = exerciseDao.insert(XExercise(workoutc3, "c deadlift"))
+            val exercisejc2 = exerciseDao.insert(XExercise(workoutjc2, "leg curl"))
+            setsDao.insert(XSet(8.5, 8,  exercisejc2))
+            setsDao.insert(XSet(8.5, 8,  exercisejc2))
 
 
-            // Start the app with a clean appDatabase every time.
-            // Not needed if you only populate on creation.
-            /*unitDao.deleteAll()
-            userDao.deleteAll()
-            workoutDao.deleteAll()
-            setsDao.deleteAll()
-            exerciseDao.deleteAll()
-
-
-            // Workout -> Exercise -> Set
-
-
-            var dates = HashMap<String, Long>()
-
-            dates["Wed 18 Sep 2019 19:12:47 GMT"] = 1568833967000;
-            dates["Tue 17 Sep 2019 19:12:47 GMT"] = 1568747567000;
-            dates["Sat 14 Sep 2019 19:12:47 GMT"] = 1568488367000;
-            dates["Fri 13 Sep 2019 19:12:47 GMT"] = 1568401967000;
-            dates["Tue 10 Sep 2019 19:12:47 GMT"] = 1568142767000;
-            dates["Mon 2 Sep 2019 19:12:47 GMT"] = 1567451567000;
-            dates["Tue 27 Aug 2019 19:12:47 GMT"] = 1566933167000;
-            dates["Mon 26 Aug 2019 19:12:47 GMT"] = 1566846767000;
-            dates["Sat 17 Aug 2019 19:12:47 GMT"] = 1566069167000;
-
-            println("***** DATABASE SETUP ****")
-           // Users
-            val userId = userDao.insert( XUser("jeanc"))
-            println("***** USER ID ${userId} ****")
-
-            var workout1 = workoutDao.insert(XWorkout( 3000, userId))
-            println("***** WORKOUT 1 ID ${workout1} ****")
-            var workout2 = workoutDao.insert(XWorkout( 4000, userId))
-            println("***** WORKOUT 2 ID ${workout2} ****")
-
-            var exercise1 = exerciseDao.insert(XExercise(workout1))
-            var exercise2 = exerciseDao.insert(XExercise(workout2))
-
-            var set11 = setsDao.insert(XSet(5, 8, exercise1))
-            println("***** SET 11 ID ${set11} ****")
-            var set12 = setsDao.insert(XSet(5, 8, exercise1))
-            println("***** SET 12 ID ${set12} ****")
-
-            var set21 = setsDao.insert(XSet(6, 8, exercise2))
-            println("***** SET 21 ID ${set21} ****")
-            var set22 = setsDao.insert(XSet(7, 8, exercise2))
-            println("***** SET 22 ID ${set22} ****")*/
         }
 
 
