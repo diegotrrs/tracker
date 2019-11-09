@@ -36,8 +36,11 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
             }
 
         }
-        holder.workoutName.text =  current.workout.durationMs.toString()
-        holder.exercisesText.text =  exercises
+        with(holder){
+            workoutName.text =  current.workout.durationMs.toString()
+            exercisesText.text =  exercises
+        }
+
     }
 
     internal fun setWorkoutsAndExercises(workoutsAndExercises: List<XWorkoutAndExercises>) {
