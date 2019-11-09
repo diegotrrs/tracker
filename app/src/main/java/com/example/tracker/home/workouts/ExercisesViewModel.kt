@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.tracker.home.common.data.AppDatabase
-import com.example.tracker.home.common.data.AppRepository
-import com.example.tracker.home.common.data.entities.XUserAndWorkoutsAndExercises
+import com.example.tracker.common.AppDatabase
+import com.example.tracker.common.AppRepository
+import com.example.tracker.common.entities.XUserAndWorkoutsAndExercises
 
 class ExercisesViewModel(application: Application) : AndroidViewModel(application) {
 

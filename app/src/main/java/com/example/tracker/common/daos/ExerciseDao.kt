@@ -1,6 +1,6 @@
-package com.example.tracker.home.common.data.daos
+package com.example.tracker.common.daos
 
-import com.example.tracker.home.common.data.entities.XExercise
+import com.example.tracker.common.entities.XExercise
 
 
 import androidx.lifecycle.LiveData

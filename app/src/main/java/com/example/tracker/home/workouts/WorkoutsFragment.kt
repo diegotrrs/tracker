@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.WorkoutsFragmentBinding
-import com.example.tracker.home.common.data.entities.XWorkout
-import java.util.logging.Logger
 
 class WorkoutsFragment : Fragment() {
 
@@ -29,7 +27,7 @@ class WorkoutsFragment : Fragment() {
 
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
             inflater,
-            R.layout.workouts_fragment,
+            R.layout.home_workouts_fragment,
             container,
             false
         )
@@ -80,7 +78,7 @@ class WorkoutsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.workouts_fragment, container, false)
+        val root = inflater.inflate(R.layout.home_workouts_fragment, container, false)
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
 

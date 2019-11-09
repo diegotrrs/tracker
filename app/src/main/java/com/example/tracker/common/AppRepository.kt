@@ -1,8 +1,8 @@
-package com.example.tracker.home.common.data
+package com.example.tracker.common
 
 import androidx.lifecycle.LiveData
-import com.example.tracker.home.common.data.daos.UserDao
-import com.example.tracker.home.common.data.entities.XUserAndWorkoutsAndExercises
+import com.example.tracker.common.daos.UserDao
+import com.example.tracker.common.entities.XUserAndWorkoutsAndExercises
 
 /*
 database.unitsDao(),

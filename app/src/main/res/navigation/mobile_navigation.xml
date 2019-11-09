@@ -9,17 +9,17 @@
         android:id="@+id/navigation_workouts"
         android:name="com.example.tracker.home.workouts.WorkoutsFragment"
         android:label="@string/title_workouts"
-        tools:layout="@layout/workouts_fragment" />
+        tools:layout="@layout/home_workouts_fragment" />
 
     <fragment
         android:id="@+id/navigation_stats"
         android:name="com.example.tracker.home.stats.StatsFragment"
         android:label="@string/title_stats"
-        tools:layout="@layout/stats_fragment" />
+        tools:layout="@layout/home_stats_fragment" />
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.tracker.home.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/home_settings_fragment" />
 </navigation>

@@ -1,11 +1,11 @@
-package com.example.tracker.home.common.data.daos
+package com.example.tracker.common.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.tracker.home.common.data.entities.XSet
+import com.example.tracker.common.entities.XSet
 
 
 @Dao

@@ -1,9 +1,9 @@
-package com.example.tracker.home.common.data.daos
+package com.example.tracker.common.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.tracker.home.common.data.entities.XUser
-import com.example.tracker.home.common.data.entities.XUserAndWorkoutsAndExercises
+import com.example.tracker.common.entities.XUser
+import com.example.tracker.common.entities.XUserAndWorkoutsAndExercises
 
 @Dao
 interface UserDao {

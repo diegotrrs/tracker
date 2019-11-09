@@ -1,8 +1,8 @@
-package com.example.tracker.home.common.data.daos
+package com.example.tracker.common.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.tracker.home.common.data.entities.XUnit
+import com.example.tracker.common.entities.XUnit
 
 
 @Dao

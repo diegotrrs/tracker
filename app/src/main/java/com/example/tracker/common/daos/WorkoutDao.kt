@@ -1,10 +1,10 @@
-package com.example.tracker.home.common.data.daos
+package com.example.tracker.common.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.tracker.home.common.data.entities.XWorkout
+import com.example.tracker.common.entities.XWorkout
 
 @Dao
 interface WorkoutDao {

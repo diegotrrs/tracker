@@ -1,12 +1,12 @@
-package com.example.tracker.home.common.data
+package com.example.tracker.common
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.tracker.home.common.data.daos.*
-import com.example.tracker.home.common.data.entities.*
+import com.example.tracker.common.daos.*
+import com.example.tracker.common.entities.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

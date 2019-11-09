@@ -1,4 +1,4 @@
-package com.example.tracker.home.common.data.entities
+package com.example.tracker.common.entities
 
 import androidx.room.Embedded
 import androidx.room.Relation

@@ -21,7 +21,7 @@ class SettingsFragment : Fragment() {
     ): View? {
         settingsViewModel =
             ViewModelProviders.of(this).get(SettingsViewModel::class.java)
-        val root = inflater.inflate(R.layout.settings_fragment, container, false)
+        val root = inflater.inflate(R.layout.home_settings_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
         settingsViewModel.text.observe(this, Observer {
             textView.text = it

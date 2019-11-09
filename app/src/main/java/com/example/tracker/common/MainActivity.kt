@@ -1,4 +1,4 @@
-package com.example.tracker.home
+package com.example.tracker.common
 
 import android.os.Bundle
 import android.view.Menu
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home_main_activity)
+        setContentView(R.layout.main_activity)
         setupNavigation();
     }
 

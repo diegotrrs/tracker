@@ -21,7 +21,7 @@ class StatsFragment : Fragment() {
     ): View? {
         statsViewModel =
             ViewModelProviders.of(this).get(StatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.stats_fragment, container, false)
+        val root = inflater.inflate(R.layout.home_stats_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         statsViewModel.text.observe(this, Observer {
             textView.text = it
