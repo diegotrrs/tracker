@@ -86,20 +86,20 @@ abstract class AppDatabase : RoomDatabase() {
 
             val jc = userDao.insert( XUser("jctorres"))
             val workoutjc1 = workoutDao.insert(XWorkout( 3000, jc))
-            val exercisejc4 = exerciseDao.insert(XExercise(workoutjc1, "bench press"))
+            val exercisejc4 = exerciseDao.insert(XExercise(workoutjc1, benchPress))
             setsDao.insert(XSet(5.5, 8,  exercisejc4))
             setsDao.insert(XSet(5.5, 8,  exercisejc4))
 
-            val exercisejc5 = exerciseDao.insert(XExercise(workoutjc1, "cable curl"))
+            val exercisejc5 = exerciseDao.insert(XExercise(workoutjc1, cableCurl))
             setsDao.insert(XSet(6.5, 8,  exercisejc5))
             setsDao.insert(XSet(6.5, 8,  exercisejc5))
 
             val workoutjc2 = workoutDao.insert(XWorkout( 4000, jc))
-            val exercisejc1 = exerciseDao.insert(XExercise(workoutjc2, "leg press"))
+            val exercisejc1 = exerciseDao.insert(XExercise(workoutjc2, legPress))
             setsDao.insert(XSet(7.5, 8,  exercisejc1))
             setsDao.insert(XSet(7.5, 8,  exercisejc1))
 
-            val exercisejc2 = exerciseDao.insert(XExercise(workoutjc2, "leg curl"))
+            val exercisejc2 = exerciseDao.insert(XExercise(workoutjc2, legCurl))
             setsDao.insert(XSet(8.5, 8,  exercisejc2))
             setsDao.insert(XSet(8.5, 8,  exercisejc2))
 

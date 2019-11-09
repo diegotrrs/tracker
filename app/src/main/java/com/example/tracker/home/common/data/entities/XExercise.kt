@@ -11,18 +11,24 @@ import androidx.room.*
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("workoutId"),
             onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = XUnit::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("unitId"),
+            onDelete = ForeignKey.CASCADE
         )
     ),
-    indices = arrayOf(Index(value = ["workoutId"]))
+    indices =[ Index("workoutId"), Index("unitId")]
 )
 data class XExercise(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     @ColumnInfo(name = "workoutId")
     var workoutId: Long = 0,
-    @ColumnInfo(name = "name")
-    var name: String = ""
+    @ColumnInfo(name = "unitId")
+    var unitId: Long
 ){
     @Ignore
-    constructor(workoutId: Long, name: String) : this(0, workoutId, name)
+    constructor(workoutId: Long, unitId: Long) : this(0, workoutId, unitId)
 }
