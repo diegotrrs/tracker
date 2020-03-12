@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.HomeWorkoutsFragmentBinding
-import com.example.tracker.home.HomeFragmentDirections
+//import com.example.tracker.home.HomeFragmentDirections
 //import com.example.tracker.home.workouts
 
 class WorkoutsFragment : Fragment() {
@@ -38,8 +38,8 @@ class WorkoutsFragment : Fragment() {
 
                 this.createNewWorkoutButton.setOnClickListener {
                     println("NAVIGATE TO PLANTxxxxx")
-                    val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
-                    it.findNavController().navigate(direction)
+                    //val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
+                    //it.findNavController().navigate(direction)
                 }
 
 
