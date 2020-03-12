@@ -1,4 +1,4 @@
-package com.example.tracker.newworkout.ui.newworkout
+package com.example.tracker.newworkout
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

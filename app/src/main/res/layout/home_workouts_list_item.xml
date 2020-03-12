@@ -12,31 +12,43 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
-    android:padding="20dip"
-    android:layout_margin="20dip"
-    android:background="@drawable/workouts_list_item_background"
-    android:layout_width="@dimen/workouts_list_item_width"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        style="@style/exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Example"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/exercisesTextView"
-        style="@style/exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exercises"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:padding="20dip"
+        android:layout_margin="20dip"
+        android:background="@drawable/workouts_list_item_background"
+        android:layout_width="@dimen/workouts_list_item_width"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/nameTextView"
+            style="@style/exercise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Example"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/exercisesTextView"
+            style="@style/exercise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercises"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

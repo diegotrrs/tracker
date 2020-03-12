@@ -8,10 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.databinding.WorkoutsFragmentBinding
+import com.example.tracker.databinding.HomeWorkoutsFragmentBinding
+import com.example.tracker.home.HomeFragmentDirections
+//import com.example.tracker.home.workouts
 
 class WorkoutsFragment : Fragment() {
 
@@ -25,7 +28,7 @@ class WorkoutsFragment : Fragment() {
     ): View? {
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
 
-        var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
+        var binding = DataBindingUtil.inflate<HomeWorkoutsFragmentBinding>(
             inflater,
             R.layout.home_workouts_fragment,
             container,
@@ -33,14 +36,26 @@ class WorkoutsFragment : Fragment() {
         )
             .apply {
 
+                this.createNewWorkoutButton.setOnClickListener {
+                    println("NAVIGATE TO PLANTxxxxx")
+                    val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
+                    it.findNavController().navigate(direction)
+                }
+
+
+
                 viewModel = exercisesViewModel
                 lifecycleOwner = viewLifecycleOwner
-                callback = object : Callback {
+               /* callback = object : Callback {
                     override fun action() {
                         println("ACTION!")
+                        val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
+                        requireActivity().findNavController().navigate(direction)
 
                     }
-                }
+                }*/
+
+
 
                 val adapter = WorkoutsListAdapter(requireContext())
                 recyclerView.adapter = adapter
