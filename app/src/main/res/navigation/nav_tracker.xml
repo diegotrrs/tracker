@@ -10,14 +10,9 @@
         android:name="com.example.tracker.home.HomeFragment"
         tools:layout="@layout/home_fragment">
 
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_newworkout"
-            app:destination="@id/navigation_newworkout" />
+
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_newworkout"
-        android:name="com.example.tracker.newworkout.NewWorkoutFragment"
-        tools:layout="@layout/new_workout_fragment" />
+
 
 </navigation>
