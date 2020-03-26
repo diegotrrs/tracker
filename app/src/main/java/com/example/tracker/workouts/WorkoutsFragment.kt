@@ -1,4 +1,4 @@
-package com.example.tracker.home.workouts
+package com.example.tracker.workouts
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.databinding.HomeWorkoutsFragmentBinding
+import com.example.tracker.databinding.WorkoutsFragmentBinding
 //import com.example.tracker.home.HomeFragmentDirections
 //import com.example.tracker.home.workouts
 
@@ -28,21 +28,17 @@ class WorkoutsFragment : Fragment() {
     ): View? {
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
 
-        var binding = DataBindingUtil.inflate<HomeWorkoutsFragmentBinding>(
+        var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
             inflater,
-            R.layout.home_workouts_fragment,
+            R.layout.workouts_fragment,
             container,
             false
         )
             .apply {
 
                 this.createNewWorkoutButton.setOnClickListener {
-                    println("NAVIGATE TO PLANTxxxxx")
-                    //val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
-                    //it.findNavController().navigate(direction)
+                    it.findNavController().navigate(R.id.action_workouts_to_newworkout)
                 }
-
-
 
                 viewModel = exercisesViewModel
                 lifecycleOwner = viewLifecycleOwner
@@ -93,7 +89,7 @@ class WorkoutsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.home_workouts_fragment, container, false)
+        val root = inflater.inflate(R.layout.workouts_fragment, container, false)
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
 

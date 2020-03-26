@@ -1,4 +1,4 @@
-package com.example.tracker.home.stats
+package com.example.tracker.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tracker.R
 
-class StatsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private lateinit var statsViewModel: StatsViewModel
+    private lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        statsViewModel =
-            ViewModelProviders.of(this).get(StatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.home_stats_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        statsViewModel.text.observe(this, Observer {
+        settingsViewModel =
+            ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+        val root = inflater.inflate(R.layout.settings_fragment, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        settingsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

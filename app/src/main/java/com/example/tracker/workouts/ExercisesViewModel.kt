@@ -1,4 +1,4 @@
-package com.example.tracker.home.workouts
+package com.example.tracker.workouts
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

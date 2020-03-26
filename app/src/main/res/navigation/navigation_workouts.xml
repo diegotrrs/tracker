@@ -19,29 +19,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    app:startDestination="@+id/leaderboard">
+    android:id="@+id/navigation_workouts"
+    app:startDestination="@id/workoutsFragment"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-            android:id="@+id/leaderboard"
-            android:name="com.example.android.navigationadvancedsample.listscreen.Leaderboard"
-            android:label="@string/title_list"
-            tools:layout="@layout/google_fragment_leaderboard">
+            android:id="@+id/workoutsFragment"
+            android:name="com.example.tracker.workouts.WorkoutsFragment"
+            android:label="@string/title_workouts"
+            tools:layout="@layout/workouts_fragment">
         <action
-            android:id="@+id/action_leaderboard_to_userProfile"
-            app:destination="@id/userProfile"/>
+            android:id="@+id/action_workouts_to_newworkout"
+            app:destination="@id/newworkoutFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/userProfile"
-        android:name="com.example.android.navigationadvancedsample.listscreen.UserProfile"
-        android:label="@string/title_detail"
-        tools:layout="@layout/google_fragment_user_profile">
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="www.example.com/user/{userName}"
-            android:autoVerify="true"/>
-        <argument
-            android:name="userName"
-            app:argType="string"/>
-    </fragment>
+        android:id="@+id/newworkoutFragment"
+        android:name="com.example.tracker.newworkout.NewWorkoutFragment"
+        android:label="NewWorkoutx"
+        tools:layout="@layout/new_workout_fragment"/>
 </navigation>

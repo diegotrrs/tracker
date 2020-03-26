@@ -1,4 +1,4 @@
-package com.example.tracker.home.workouts
+package com.example.tracker.workouts
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
-        val itemView = inflater.inflate(R.layout.home_workouts_list_item, parent, false)
+        val itemView = inflater.inflate(R.layout.workouts_list_item, parent, false)
         return WorkoutsViewHolder(itemView )
     }
 

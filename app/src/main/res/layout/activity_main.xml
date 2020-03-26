@@ -33,5 +33,5 @@
         style="@style/BottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/google_bottom_nav"/>
+        app:menu="@menu/bottom_nav_menu"/>
 </LinearLayout>

@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.tracker.home.workouts.ExercisesViewModel" />
+            type="com.example.tracker.workouts.ExercisesViewModel" />
 
         <variable
             name="callback"
-            type="com.example.tracker.home.workouts.WorkoutsFragment.Callback" />
+            type="com.example.tracker.workouts.WorkoutsFragment.Callback" />
     </data>
 
 
@@ -24,7 +24,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/home_workouts_list_item" />
+            tools:listitem="@layout/workouts_list_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/createNewWorkoutButton"
