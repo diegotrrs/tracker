@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.tracker.R
-import com.example.tracker.databinding.TrackerActivityBinding
+//import com.example.tracker.databinding.TrackerA
 
 class TrackerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<TrackerActivityBinding>(this, R.layout.tracker_activity)
+  //     DataBindingUtil.setContentView<TrackerActivityBinding>(this, R.layout.tracker_activity)
     }
 }
