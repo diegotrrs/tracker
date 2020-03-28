@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
-import com.example.tracker.common.entities.XWorkoutAndExercises
+import com.example.tracker.common.entities.WorkoutAndEntries
 
 class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
-    private var workoutsAndExercises = emptyList<XWorkoutAndExercises>();
+    private var workoutsAndEntries = emptyList<WorkoutAndEntries>();
 
     inner class WorkoutsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val workoutName : TextView = itemView.findViewById(R.id.nameTextView)
-        val exercisesText : TextView = itemView.findViewById(R.id.exercisesTextView)
+        val entriesText : TextView = itemView.findViewById(R.id.entriesTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
@@ -26,30 +26,30 @@ class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
-        val current = workoutsAndExercises[position]
-        var exercises = ""
-        current.exercises.forEach {
-            println("Exercise ${it}")
-            exercises += "\n ${it.getUnit().name} \n"
+        val current = workoutsAndEntries[position]
+        var entries = ""
+        current.entries.forEach {
+            println("Entry ${it}")
+            entries += "\n ${it.getUnit().name} \n"
             it.sets.forEach {
-                exercises += " \t> ${it.weight}  ${it.reps}\n"
+                entries += " \t> ${it.weight}  ${it.reps}\n"
             }
 
         }
         with(holder){
             workoutName.text =  current.workout.durationMs.toString()
-            exercisesText.text =  exercises
+            entriesText.text =  entries
         }
 
     }
 
-    internal fun setWorkoutsAndExercises(workoutsAndExercises: List<XWorkoutAndExercises>) {
-        this.workoutsAndExercises = workoutsAndExercises
+    internal fun setWorkoutsAndEntries(workoutsAndEntries: List<WorkoutAndEntries>) {
+        this.workoutsAndEntries = workoutsAndEntries
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return this.workoutsAndExercises.size
+        return this.workoutsAndEntries.size
     }
 
 

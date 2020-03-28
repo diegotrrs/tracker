@@ -1,6 +1,6 @@
 package com.example.tracker.common.daos
 
-import com.example.tracker.common.entities.XExercise
+import com.example.tracker.common.entities.Entry
 
 
 import androidx.lifecycle.LiveData
@@ -10,14 +10,14 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface ExerciseDao {
+interface EntriesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(XExercise: XExercise): Long
+    suspend fun insert(Entry: Entry): Long
 
-    @Query("DELETE FROM exercises")
+    @Query("DELETE FROM entries")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM exercises")
-    fun getAll(): LiveData<List<XExercise>>
+    @Query("SELECT * FROM entries")
+    fun getAll(): LiveData<List<Entry>>
 
 }

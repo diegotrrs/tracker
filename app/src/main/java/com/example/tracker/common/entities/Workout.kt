@@ -6,7 +6,7 @@ import androidx.room.*
     tableName = "workouts",
     foreignKeys = arrayOf(
         ForeignKey(
-            entity = XUser::class,
+            entity = User::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("userId"),
             onDelete = ForeignKey.CASCADE
@@ -14,7 +14,7 @@ import androidx.room.*
     ),
     indices = arrayOf(Index(value = ["userId"]))
 )
-data class XWorkout(
+data class Workout(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
     @ColumnInfo(name="durationMs")

@@ -4,25 +4,25 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.tracker.common.entities.XWorkout
+import com.example.tracker.common.entities.Workout
 
 @Dao
 interface WorkoutDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(XWorkout: XWorkout): Long
+    suspend fun insert(Workout: Workout): Long
 
     @Query("DELETE FROM workouts")
     suspend fun deleteAll()
 
 
     /*@Query("SELECT * FROM workouts WHERE durationMs =:duration")
-    fun findByWorkoutDuration(duration: Long): LiveData<List<XWorkoutAndExercises>>
+    fun findByWorkoutDuration(duration: Long): LiveData<List<WorkoutAndEntries>>
 
     @Query("SELECT * FROM workouts " +
-            "INNER JOIN workoutExercises ON workouts.id = workoutExercises.workoutId " +
-            "INNER JOIN sets ON workoutExercises.id = sets.workoutExerciseId " +
+            "INNER JOIN workoutEntries ON workouts.id = workoutEntries.workoutId " +
+            "INNER JOIN WSets ON workoutEntries.id = WSets.workoutEntryId " +
             "WHERE workouts.userId=:userId")
-    fun getWorkoutsByUser(userId: Int): LiveData<List<XWorkout>>*/
+    fun getWorkoutsByUser(userId: Int): LiveData<List<Workout>>*/
 
     /*@Query("SELECT * FROM workouts WHERE id = :workoutId")
     fun loadWorkout(workoutId: Long): Single<TripAndListsAndListItems>
@@ -34,7 +34,7 @@ interface WorkoutDao {
     @Query("SELECT workouts.*,users.* FROM workouts " +
             "INNER JOIN users ON workouts.userId = users.id " +
             "WHERE workouts.userId=:userId")
-    fun getWorkoutsByUser(userId: Int): LiveData<List<XWorkout>>*/
+    fun getWorkoutsByUser(userId: Int): LiveData<List<Workout>>*/
 
 
 }

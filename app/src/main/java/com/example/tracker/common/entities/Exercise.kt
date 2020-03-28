@@ -4,7 +4,7 @@ import androidx.room.*
 
 
 @Entity(tableName = "units")
-data class XUnit(
+data class Exercise(
     @PrimaryKey(autoGenerate = true) var id: Long,
     @ColumnInfo(name = "name") val name: String
 ){

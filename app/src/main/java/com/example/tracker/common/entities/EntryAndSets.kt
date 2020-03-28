@@ -4,28 +4,28 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 
-class XExerciseAndSets(
+class EntryAndSets(
     @Embedded
-    var exercise: XExercise,
+    var entry: Entry,
 
 
     @Relation(
         parentColumn = "unitId",
         entityColumn = "id",
-        entity = XUnit::class
+        entity = Exercise::class
     )
-    var units: List<XUnit> = listOf(),
+    var units: List<Exercise> = listOf(),
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "exerciseId",
-        entity = XSet::class
+        entityColumn = "entryId",
+        entity = WSet::class
     )
-    var sets : List<XSet> = listOf()
+    var sets : List<WSet> = listOf()
 
 ) {
 
-    fun getUnit(): XUnit {
+    fun getUnit(): Exercise {
         return units[0];
     }
 }

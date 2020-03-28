@@ -4,15 +4,15 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 
-class XUserAndWorkoutsAndExercises(
+class UserAndWorkoutsAndEntries(
     @Embedded
-    var user: XUser,
+    var user: User,
 
     @Relation(
         parentColumn = "id",
         entityColumn = "userId",
-        entity = XWorkout::class
+        entity = Workout::class
     )
-    var workoutsAndExercises: List<XWorkoutAndExercises> = listOf()
+    var workoutsAndEntries: List<WorkoutAndEntries> = listOf()
 )
 

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.tracker.workouts.ExercisesViewModel" />
+            type="com.example.tracker.workouts.WorkoutsViewModel" />
 
         <variable
             name="callback"

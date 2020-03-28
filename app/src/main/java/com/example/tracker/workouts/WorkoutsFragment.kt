@@ -18,7 +18,7 @@ import com.example.tracker.databinding.WorkoutsFragmentBinding
 
 class WorkoutsFragment : Fragment() {
 
-    private lateinit var exercisesViewModel: ExercisesViewModel
+    private lateinit var workoutsViewModel: WorkoutsViewModel
 
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class WorkoutsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
+        workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
 
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
             inflater,
@@ -40,7 +40,7 @@ class WorkoutsFragment : Fragment() {
                     it.findNavController().navigate(R.id.action_workouts_to_newworkout)
                 }
 
-                viewModel = exercisesViewModel
+                viewModel = workoutsViewModel
                 lifecycleOwner = viewLifecycleOwner
                /* callback = object : Callback {
                     override fun action() {
@@ -61,13 +61,13 @@ class WorkoutsFragment : Fragment() {
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
                 this.lifecycleOwner?.let {
-                    exercisesViewModel.workouts.observe(it, Observer { workouts ->
+                    workoutsViewModel.workouts.observe(it, Observer { workouts ->
                         workouts?.let {
-                            println("************************ Fragment XUserAndWorkoutsAndExercises:  ${it.size} UserAndWorkouts")
+                            println("************************ Fragment UserAndWorkoutsAndEntries:  ${it.size} UserAndWorkouts")
                             if (it.size > 0) {
-                                println("${it[0].user} user")
-                                println("${it[0].workoutsAndExercises.size} workoutsAndExercises")
-                                adapter.setWorkoutsAndExercises(it[0].workoutsAndExercises)
+                                println("${it[0].user} User")
+                                println("${it[0].workoutsAndEntries.size} workoutsAndEntries")
+                                adapter.setWorkoutsAndEntries(it[0].workoutsAndEntries)
                             }
                         }
                     })
@@ -98,15 +98,15 @@ class WorkoutsFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
-        exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
+        workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
 
-        exercisesViewModel.workouts.observe(this, Observer { workouts ->
+        workoutsViewModel.workouts.observe(this, Observer { workouts ->
             workouts?.let {
-                println("************************ Fragment XUserAndWorkoutsAndExercises:  ${it.size} UserAndWorkouts")
+                println("************************ Fragment UserAndWorkoutsAndEntries:  ${it.size} UserAndWorkouts")
                 if (it.size > 0) {
-                    println("${it[0].user} user")
-                    println("${it[0].workoutsAndExercises.size} workoutsAndExercises")
-                    adapter.setWorkoutsAndExercises(it[0].workoutsAndExercises)
+                    println("${it[0].user} User")
+                    println("${it[0].workoutsAndEntries.size} workoutsAndEntries")
+                    adapter.setWorkoutsAndEntries(it[0].workoutsAndEntries)
                 }
             }
         })

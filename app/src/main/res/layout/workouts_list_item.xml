@@ -33,7 +33,7 @@ limitations under the License. -->
 
         <TextView
             android:id="@+id/nameTextView"
-            style="@style/exercise_name"
+            style="@style/entries_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Example"
@@ -42,11 +42,11 @@ limitations under the License. -->
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/exercisesTextView"
-            style="@style/exercise_name"
+            android:id="@+id/entriesTextView"
+            style="@style/entries_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exercises"
+            android:text="Entries"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
