@@ -63,10 +63,7 @@ class WorkoutsFragment : Fragment() {
                 this.lifecycleOwner?.let {
                     workoutsViewModel.workouts.observe(it, Observer { workouts ->
                         workouts?.let {
-                            println("************************ Fragment UserAndWorkoutsAndEntries:  ${it.size} UserAndWorkouts")
                             if (it.size > 0) {
-                                println("${it[0].user} User")
-                                println("${it[0].workoutsAndEntries.size} workoutsAndEntries")
                                 adapter.setWorkoutsAndEntries(it[0].workoutsAndEntries)
                             }
                         }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2019, The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   ~ limitations under the License.
   -->
 
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_workouts"
@@ -24,17 +22,31 @@
     tools:ignore="UnusedNavigation">
 
     <fragment
-            android:id="@+id/workoutsFragment"
-            android:name="com.example.tracker.workouts.WorkoutsFragment"
-            android:label="@string/title_workouts"
-            tools:layout="@layout/workouts_fragment">
+        android:id="@+id/workoutsFragment"
+        android:name="com.example.tracker.workouts.WorkoutsFragment"
+        android:label="@string/title_workouts"
+        tools:layout="@layout/workouts_fragment">
         <action
             android:id="@+id/action_workouts_to_newworkout"
-            app:destination="@id/newworkoutFragment"/>
+            app:destination="@id/newworkoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/newworkoutFragment"
         android:name="com.example.tracker.newworkout.NewWorkoutFragment"
         android:label="NewWorkoutx"
-        tools:layout="@layout/new_workout_fragment"/>
+        tools:layout="@layout/new_workout_fragment">
+
+        <action
+            android:id="@+id/action_newworkout_to_exercises"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.example.tracker.workouts.ExercisesFragment"
+        android:label="@string/exercises_workouts"
+        tools:layout="@layout/exercises_fragment">
+
+    </fragment>
+
 </navigation>

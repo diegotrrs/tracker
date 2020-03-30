@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 @Database(entities = [Exercise::class, WSet::class, User::class, Workout::class, Entry::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun unitsDao(): UnitDao
+    abstract fun exercisesDao(): ExercisesDao
     abstract fun entriesDao(): EntriesDao
     abstract fun workoutsDao(): WorkoutDao
     abstract fun setsDao(): SetDao
@@ -51,7 +51,7 @@ abstract class AppDatabase : RoomDatabase() {
                 appDatabase?.let { database ->
                     scope.launch {
                         populateDatabase(
-                            database.unitsDao(),
+                            database.exercisesDao(),
                             database.entriesDao(),
                             database.workoutsDao(),
                             database.setsDao(),
@@ -68,21 +68,19 @@ abstract class AppDatabase : RoomDatabase() {
          * If you want to start with more words, just add them.
          */
 
-        suspend fun populateDatabase(unitDao: UnitDao, entriesDao: EntriesDao,
+        suspend fun populateDatabase(exercisesDao: ExercisesDao, entriesDao: EntriesDao,
                                      workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao) {
-
             println(" *** POPULATING DATABASE ***")
-            unitDao.deleteAll()
+            exercisesDao.deleteAll()
             setsDao.deleteAll()
             userDao.deleteAll()
             workoutDao.deleteAll()
             entriesDao.deleteAll()
 
-
-            val benchPress = unitDao.insert(Exercise("bench press"))
-            val cableCurl = unitDao.insert(Exercise("cable curl"))
-            val legPress = unitDao.insert(Exercise("leg press"))
-            val legCurl = unitDao.insert(Exercise("leg curl"))
+            val benchPress = exercisesDao.insert(Exercise("bench press"))
+            val cableCurl = exercisesDao.insert(Exercise("cable curl"))
+            val legPress = exercisesDao.insert(Exercise("leg press"))
+            val legCurl = exercisesDao.insert(Exercise("leg curl"))
 
             val jc = userDao.insert( User("jctorres"))
             val workoutjc1 = workoutDao.insert(Workout( 3000, jc))
@@ -102,11 +100,6 @@ abstract class AppDatabase : RoomDatabase() {
             val entryjc3 = entriesDao.insert(Entry(workoutjc2, legCurl))
             setsDao.insert(WSet(8.5, 8,  entryjc3))
             setsDao.insert(WSet(8.5, 8,  entryjc3))
-
-
         }
-
-
     }
-
 }

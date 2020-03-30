@@ -6,17 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tracker.common.AppDatabase
 import com.example.tracker.common.AppRepository
-import com.example.tracker.common.entities.UserAndWorkoutsAndEntries
+import com.example.tracker.common.entities.Exercise
 
-class WorkoutsViewModel(application: Application) : AndroidViewModel(application) {
+class ExercisesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val appRepository: AppRepository
-    val workouts: LiveData<List<UserAndWorkoutsAndEntries>>
+    val exercises: LiveData<List<Exercise>>
 
     init {
         var usersDao = AppDatabase.getDatabase(application, viewModelScope).usersDao();
         var exercisesDao = AppDatabase.getDatabase(application, viewModelScope).exercisesDao();
         appRepository = AppRepository(usersDao, exercisesDao)
-        workouts = appRepository.workouts
+        exercises = appRepository.exercises
     }
 }

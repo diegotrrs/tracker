@@ -3,7 +3,7 @@ package com.example.tracker.common.entities
 import androidx.room.*
 
 
-@Entity(tableName = "units")
+@Entity(tableName = "exercises")
 data class Exercise(
     @PrimaryKey(autoGenerate = true) var id: Long,
     @ColumnInfo(name = "name") val name: String

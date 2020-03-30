@@ -1,19 +1,12 @@
 package com.example.tracker.common
 
 import androidx.lifecycle.LiveData
+import com.example.tracker.common.daos.ExercisesDao
 import com.example.tracker.common.daos.UserDao
+import com.example.tracker.common.entities.Exercise
 import com.example.tracker.common.entities.UserAndWorkoutsAndEntries
 
-/*
-database.unitsDao(),
-database.entriesDao(),
-database.workoutsDao(),
-database.setsDao(),
-database.usersDao()
-
-*/
-
-
-class AppRepository(private val userDao: UserDao){
+class AppRepository(private val userDao: UserDao, private val exercisesDao: ExercisesDao){
     val workouts : LiveData<List<UserAndWorkoutsAndEntries>> = userDao.getUser("jctorres");
+    val exercises : LiveData<List<Exercise>> = exercisesDao.getAll();
 }

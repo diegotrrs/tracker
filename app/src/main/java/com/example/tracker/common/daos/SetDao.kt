@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.tracker.common.entities.WSet
 
-
 @Dao
 interface SetDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
