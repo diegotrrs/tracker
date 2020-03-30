@@ -6,6 +6,7 @@
 <color name="black">@android:color/black</color>
 <color name="mainBackground">#050F0E0E</color>
 <color name="toolbarBackground">@color/white</color>
+<color name="bottomNavigationBackground">@color/white</color>
 <color name="cardBackground">@color/white</color>
 <color name="colorPrimary">#008577</color>
 <color name="colorPrimaryDark">#00574B</color>
