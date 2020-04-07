@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.tracker.workouts.ExercisesFragment"
-        android:label="@string/exercises_workouts"
+        android:label="@string/title_exercises"
         tools:layout="@layout/exercises_fragment">
 
     </fragment>

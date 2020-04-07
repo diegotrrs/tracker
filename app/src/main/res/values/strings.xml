@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">tracker</string>
     <string name="title_workouts">Workouts</string>
-    <string name="exercises_workouts">Exercises</string>
+    <string name="title_new_workout">New Workout</string>
+    <string name="title_exercises">Exercises</string>
     <string name="title_stats">Stats</string>
     <string name="title_settings">Settings</string>
 </resources>

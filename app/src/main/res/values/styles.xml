@@ -26,7 +26,7 @@
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:background">@color/toolbarBackground</item>
+        <item name="android:background">@color/red</item>
     </style>
 
     <style name="BottomNavigation">

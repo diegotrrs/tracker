@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.WorkoutsFragmentBinding
+import kotlinx.android.synthetic.main.basic_toolbar.*
+
+
 //import com.example.tracker.home.HomeFragmentDirections
 //import com.example.tracker.home.workouts
 
@@ -20,12 +25,17 @@ class WorkoutsFragment : Fragment() {
 
     private lateinit var workoutsViewModel: WorkoutsViewModel
 
+    inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
+        appCompatActivity.setSupportActionBar(toolbar)
+
         workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
 
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
@@ -51,11 +61,8 @@ class WorkoutsFragment : Fragment() {
                     }
                 }*/
 
-
-
                 val adapter = WorkoutsListAdapter(requireContext())
                 recyclerView.adapter = adapter
-
 
                 recyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
@@ -73,6 +80,16 @@ class WorkoutsFragment : Fragment() {
             }
 
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        toolbarTitle.setText(getString(R.string.title_workouts))
+
+        toolbar?.setNavigationOnClickListener { view ->
+            view.findNavController().navigateUp()
+        }
+
     }
 
     interface Callback {
