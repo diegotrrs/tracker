@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import com.example.tracker.R
-import kotlinx.android.synthetic.main.basic_toolbar.*
+import com.example.tracker.databinding.SettingsFragmentBinding
+import com.example.tracker.databinding.StatsFragmentBinding
+import kotlinx.android.synthetic.main.stats_fragment.*
 
 class StatsFragment : Fragment() {
 
@@ -27,21 +29,23 @@ class StatsFragment : Fragment() {
     ): View? {
         statsViewModel =
             ViewModelProviders.of(this).get(StatsViewModel::class.java)
-        val root = inflater.inflate(R.layout.stats_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        statsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
 
-        var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
-        appCompatActivity.setSupportActionBar(toolbar)
-
-        return root
+        var binding = DataBindingUtil.inflate<StatsFragmentBinding>(
+            inflater,
+            R.layout.stats_fragment,
+            container,
+            false
+        ).apply {
+            appCompatActivity.setSupportActionBar(toolbar)
+            statsViewModel.text.observe(viewLifecycleOwner, Observer {
+                statsText.text = it
+            })
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbarTitle.setText(getString(R.string.title_settings))
+        toolbar.setTitle(getString(R.string.stats))
     }
-
 }

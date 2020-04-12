@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.WorkoutsFragmentBinding
-import kotlinx.android.synthetic.main.basic_toolbar.*
+import kotlinx.android.synthetic.main.workouts_fragment.*
 
 
 //import com.example.tracker.home.HomeFragmentDirections
@@ -32,10 +32,6 @@ class WorkoutsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
-        appCompatActivity.setSupportActionBar(toolbar)
-
         workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
 
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
@@ -45,7 +41,7 @@ class WorkoutsFragment : Fragment() {
             false
         )
             .apply {
-
+                appCompatActivity.setSupportActionBar(toolbar)
                 this.createNewWorkoutButton.setOnClickListener {
                     it.findNavController().navigate(R.id.action_workouts_to_newworkout)
                 }
@@ -84,8 +80,7 @@ class WorkoutsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbarTitle.setText(getString(R.string.title_workouts))
-
+        toolbar.setTitle(getString(R.string.workouts))
         toolbar?.setNavigationOnClickListener { view ->
             view.findNavController().navigateUp()
         }
@@ -94,37 +89,5 @@ class WorkoutsFragment : Fragment() {
 
     interface Callback {
         fun action()
-    }
-
-
-    fun onCreateViewOld(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val root = inflater.inflate(R.layout.workouts_fragment, container, false)
-        val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
-
-
-        val adapter = WorkoutsListAdapter(requireContext())
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-
-        workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
-
-        workoutsViewModel.workouts.observe(this, Observer { workouts ->
-            workouts?.let {
-                println("************************ Fragment UserAndWorkoutsAndEntries:  ${it.size} UserAndWorkouts")
-                if (it.size > 0) {
-                    println("${it[0].user} User")
-                    println("${it[0].workoutsAndEntries.size} workoutsAndEntries")
-                    adapter.setWorkoutsAndEntries(it[0].workoutsAndEntries)
-                }
-            }
-        })
-        return root;
-
     }
 }

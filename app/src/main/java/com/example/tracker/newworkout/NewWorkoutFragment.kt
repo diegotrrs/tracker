@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.NewWorkoutFragmentBinding
-import kotlinx.android.synthetic.main.basic_toolbar.*
+import kotlinx.android.synthetic.main.new_workout_fragment.*
 
 
 class NewWorkoutFragment : Fragment() {
@@ -32,22 +32,22 @@ class NewWorkoutFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(NewWorkoutViewModel::class.java)
         var binding = DataBindingUtil.inflate<NewWorkoutFragmentBinding>(inflater, R.layout.new_workout_fragment, container, false).apply {
-
+            appCompatActivity.setSupportActionBar(toolbar)
             this.addExerciseButton.setOnClickListener {
                 it.findNavController().navigate(R.id.action_newworkout_to_exercises)
             }
         };
 
-        var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
+       /* var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
         appCompatActivity.setSupportActionBar(toolbar)
-        appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);*/
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbarTitle.setText(getString(R.string.title_new_workout))
+        toolbar.setTitle(getString(R.string.new_workout))
         toolbar?.setNavigationOnClickListener { view ->
             view.findNavController().navigateUp()
         }

@@ -6,17 +6,26 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:theme="@style/ToolbarTheme"
     app:contentInsetStartWithNavigation="0dp"
     app:navigationIcon="@drawable/ic_back">
 
     <TextView
         android:id="@+id/toolbarTitle"
-        android:textColor="@color/black"
-        android:textSize="16dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       />
+        android:textColor="@color/black"
+        android:textSize="16dip" />
+
+
+    <ImageButton
+        android:id="@+id/addToolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="15dip"
+        app:srcCompat="@drawable/button_add" />
 
 
 </androidx.appcompat.widget.Toolbar>

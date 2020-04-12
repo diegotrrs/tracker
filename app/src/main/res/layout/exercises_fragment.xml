@@ -5,13 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.example.tracker.workouts.ExercisesViewModel" />
 
         <variable
-            name="callback"
-            type="com.example.tracker.workouts.ExercisesFragment.Callback" />
+            name="viewModel"
+            type="com.example.tracker.exercises.ExercisesViewModel" />
+
     </data>
 
 
@@ -19,31 +17,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            layout="@layout/exercises_toolbar"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp" />
+            android:layout_height="56dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/exercises_menu"
+            app:navigationIcon="@drawable/ic_back" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             tools:listitem="@layout/exercises_list_item" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createExerciseButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:tint="@android:color/white"
-            app:layout_anchorGravity="bottom|end"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@drawable/ic_add_black_24dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

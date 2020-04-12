@@ -1,12 +1,8 @@
-package com.example.tracker.workouts
+package com.example.tracker.exercises
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.databinding.ExercisesFragmentBinding
-import kotlinx.android.synthetic.main.basic_toolbar.*
+import kotlinx.android.synthetic.main.exercises_fragment.*
 
 
 class ExercisesFragment : Fragment() {
@@ -31,9 +27,9 @@ class ExercisesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
-        var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
-        appCompatActivity.setSupportActionBar(toolbar)
-        appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
+        //var toolbar = inflater.inflate(R.layout.exercises_toolbar, container, false) as Toolbar?;
+        //appCompatActivity.setSupportActionBar(toolbar)
+        //appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
 
         var binding = DataBindingUtil.inflate<ExercisesFragmentBinding>(
             inflater,
@@ -43,6 +39,7 @@ class ExercisesFragment : Fragment() {
         )
             .apply {
 
+                appCompatActivity.setSupportActionBar(toolbar)
                 viewModel = exercisesViewModel
                 lifecycleOwner = viewLifecycleOwner
 
@@ -59,19 +56,31 @@ class ExercisesFragment : Fragment() {
                 }
 
             }
-
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
+        println("CLOCK")
+        if (menuItem.getItemId() === android.R.id.home) {
+
+        }
+        return super.onOptionsItemSelected(menuItem)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.exercises_menu, menu)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        toolbar?.setNavigationOnClickListener { view ->
+        toolbar.setNavigationOnClickListener { view ->
             println("UP! on  activity created")
             view.findNavController().navigateUp()
         }
 
-        toolbarTitle.setText(getString(R.string.title_exercises))
+        toolbar.setTitle(getString(R.string.exercises))
     }
 
     interface Callback {

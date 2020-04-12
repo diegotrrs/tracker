@@ -33,7 +33,7 @@ limitations under the License. -->
 
         <TextView
             android:id="@+id/nameTextView"
-            style="@style/entries_name"
+            style="@style/ListItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Example"
@@ -43,7 +43,7 @@ limitations under the License. -->
 
         <TextView
             android:id="@+id/entriesTextView"
-            style="@style/entries_name"
+            style="@style/ListItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entries"
