@@ -16,11 +16,6 @@ import kotlinx.android.synthetic.main.new_workout_fragment.*
 
 
 class NewWorkoutFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = NewWorkoutFragment()
-    }
-
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     private lateinit var viewModel: NewWorkoutViewModel
@@ -31,16 +26,17 @@ class NewWorkoutFragment : Fragment() {
     ): View {
 
         viewModel = ViewModelProviders.of(this).get(NewWorkoutViewModel::class.java)
-        var binding = DataBindingUtil.inflate<NewWorkoutFragmentBinding>(inflater, R.layout.new_workout_fragment, container, false).apply {
+        var binding = DataBindingUtil.inflate<NewWorkoutFragmentBinding>(
+            inflater,
+            R.layout.new_workout_fragment,
+            container,
+            false
+        ).apply {
             appCompatActivity.setSupportActionBar(toolbar)
             this.addExerciseButton.setOnClickListener {
                 it.findNavController().navigate(R.id.action_newworkout_to_exercises)
             }
         };
-
-       /* var toolbar = inflater.inflate(R.layout.basic_toolbar, container, false) as Toolbar?;
-        appCompatActivity.setSupportActionBar(toolbar)
-        appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);*/
 
         return binding.root
     }
@@ -48,15 +44,10 @@ class NewWorkoutFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         toolbar.setTitle(getString(R.string.new_workout))
-        toolbar?.setNavigationOnClickListener { view ->
-            view.findNavController().navigateUp()
-        }
     }
-
 
     interface Callback {
         fun action()
     }
-
 
 }

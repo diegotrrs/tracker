@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
@@ -27,9 +26,6 @@ class ExercisesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
-        //var toolbar = inflater.inflate(R.layout.exercises_toolbar, container, false) as Toolbar?;
-        //appCompatActivity.setSupportActionBar(toolbar)
-        //appCompatActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true);
 
         var binding = DataBindingUtil.inflate<ExercisesFragmentBinding>(
             inflater,
@@ -61,9 +57,8 @@ class ExercisesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        println("CLOCK")
-        if (menuItem.getItemId() === android.R.id.home) {
-
+        if (menuItem.getItemId() === R.id.action_add) {
+            CreateExerciseDialogFullScreen.display(appCompatActivity.supportFragmentManager);
         }
         return super.onOptionsItemSelected(menuItem)
     }
@@ -74,12 +69,6 @@ class ExercisesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        toolbar.setNavigationOnClickListener { view ->
-            println("UP! on  activity created")
-            view.findNavController().navigateUp()
-        }
-
         toolbar.setTitle(getString(R.string.exercises))
     }
 

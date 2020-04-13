@@ -9,9 +9,9 @@
     <color name="toolbarBackground">@color/white</color>
     <color name="bottomNavigationBackground">@color/white</color>
     <color name="cardBackground">@color/white</color>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
     <color name="gray50">#FAFAFA</color>
 
-    <color name="colorAccent">#7e53c5</color>
+    <color name="colorPrimary">#53C5C3</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#BA7B53C5</color>
 </resources>

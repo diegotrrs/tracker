@@ -14,8 +14,22 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.Tracker.FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.Tracker.Slide">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
     <style name="ListItem">
-        <item name="android:fontFamily">@font/muli_semibold</item>
+        <item name="android:fontFamily">@font/multi_semibold</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">26dp</item>
         <item name="android:textSize">24sp</item>
@@ -29,7 +43,8 @@
         <item name="android:background">@color/bottomNavigationBackground</item>
         <item name="itemTextColor">@color/black</item>
         <item name="itemIconTint">@color/black</item>
-        <item name="android:fontFamily">@font/muli_semibold</item>
+        <item name="android:fontFamily">@font/multi_semibold</item>
     </style>
+
 
 </resources>
