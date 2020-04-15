@@ -1,7 +1,13 @@
 package com.example.tracker.exercises
 
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,6 +26,9 @@ class ExercisesFragment : Fragment() {
 
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
+    companion object {
+        private const val CREATE_EXERCISE_REQUEST_CODE = 0
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,9 +65,22 @@ class ExercisesFragment : Fragment() {
         return binding.root
     }
 
+    private fun displayCreateExerciseDialog() {
+        //CreateExerciseDialog.display(appCompatActivity.supportFragmentManager);
+        val exampleDialog = CreateExerciseDialog()
+        exampleDialog.show(this.requireFragmentManager(), CreateExerciseDialog.TAG)
+        exampleDialog.setTargetFragment( this, CREATE_EXERCISE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        println("ON ACTIVITY RESULT " +  requestCode + resultCode + data)
+        println(data!!.getStringExtra("ff"))
+    }
+
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.getItemId() === R.id.action_add) {
-            CreateExerciseDialogFullScreen.display(appCompatActivity.supportFragmentManager);
+            displayCreateExerciseDialog();
+
         }
         return super.onOptionsItemSelected(menuItem)
     }

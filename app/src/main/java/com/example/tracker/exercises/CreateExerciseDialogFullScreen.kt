@@ -30,7 +30,7 @@ class CreateExerciseDialogFullScreen : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val view: View = inflater.inflate(R.layout.create_exercise_dialog, container, false)
+        val view: View = inflater.inflate(R.layout.create_exercise_full_screen_dialog, container, false)
         toolbar = view.findViewById(R.id.toolbar)
         return view
     }
