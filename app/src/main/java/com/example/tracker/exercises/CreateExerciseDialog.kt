@@ -1,27 +1,43 @@
 package com.example.tracker.exercises
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import com.example.tracker.R
 import com.example.tracker.databinding.CreateExerciseDialogBinding
 
 import kotlinx.android.synthetic.main.create_exercise_dialog.*
 
+
 class CreateExerciseDialog : DialogFragment() {
+    internal lateinit var listener: OnCreateExerciseListener
+
+    interface OnCreateExerciseListener {
+        fun onCreateButtonClicked(exerciseName: kotlin.String)
+    }
+
+    companion object {
+        const val TAG = "example_dialog"
+
+        fun newInstance(listener: OnCreateExerciseListener) = CreateExerciseDialog().apply {
+            this.listener = listener;
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         var binding = DataBindingUtil.inflate<CreateExerciseDialogBinding>(
             inflater,
             R.layout.create_exercise_dialog,
@@ -29,10 +45,17 @@ class CreateExerciseDialog : DialogFragment() {
             false
         )
             .apply {
+                cancelButton.setOnClickListener(View.OnClickListener {
+                    dismiss()
+                })
 
+                addButton.setOnClickListener(View.OnClickListener {
+                    dismiss()
+                    listener.onCreateButtonClicked(exerciseNameTextView.text.toString())
+                })
             }
 
-        binding.callback = Callback(this)
+        getDialog()!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         return binding.root
     }
 
@@ -46,31 +69,11 @@ class CreateExerciseDialog : DialogFragment() {
         }
     }
 
-    class Callback constructor(private val dialog: DialogFragment) {
-         fun close() {
-            dialog.dismiss()
-        }
-        fun add() {
-            println("dialog")
-            println(dialog)
-            dialog.getTargetFragment()!!.onActivityResult(2, 2, Intent().apply { putExtra("ff", "aaaaa") } )
-        }
-    }
-
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
         toolbar!!.title = this.getString(R.string.new_exercise)
-    }
-
-    companion object {
-        const val TAG = "example_dialog"
-        fun display(fragmentManager: FragmentManager?): CreateExerciseDialog {
-            val exampleDialog = CreateExerciseDialog()
-            exampleDialog.show(fragmentManager!!, TAG)
-            return exampleDialog
-        }
     }
 }

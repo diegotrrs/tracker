@@ -1,13 +1,8 @@
 package com.example.tracker.exercises
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,15 +15,12 @@ import com.example.tracker.databinding.ExercisesFragmentBinding
 import kotlinx.android.synthetic.main.exercises_fragment.*
 
 
-class ExercisesFragment : Fragment() {
+class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListener {
 
     private lateinit var exercisesViewModel: ExercisesViewModel
 
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
-    companion object {
-        private const val CREATE_EXERCISE_REQUEST_CODE = 0
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -66,15 +58,9 @@ class ExercisesFragment : Fragment() {
     }
 
     private fun displayCreateExerciseDialog() {
-        //CreateExerciseDialog.display(appCompatActivity.supportFragmentManager);
-        val exampleDialog = CreateExerciseDialog()
-        exampleDialog.show(this.requireFragmentManager(), CreateExerciseDialog.TAG)
-        exampleDialog.setTargetFragment( this, CREATE_EXERCISE_REQUEST_CODE)
-    }
+        CreateExerciseDialog.newInstance(this).show(this.requireFragmentManager(), CreateExerciseDialog.TAG)
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        println("ON ACTIVITY RESULT " +  requestCode + resultCode + data)
-        println(data!!.getStringExtra("ff"))
+
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
@@ -94,7 +80,7 @@ class ExercisesFragment : Fragment() {
         toolbar.setTitle(getString(R.string.exercises))
     }
 
-    interface Callback {
-        fun action()
+    override fun onCreateButtonClicked(name: String){
+        println("Create exercise CLICKED YEAH" + name)
     }
 }
