@@ -1,8 +1,6 @@
 package com.example.tracker.exercises
 
 import android.app.Dialog
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.example.tracker.R
 import com.example.tracker.databinding.CreateExerciseDialogBinding
-
 import kotlinx.android.synthetic.main.create_exercise_dialog.*
 
 
@@ -54,9 +51,17 @@ class CreateExerciseDialog : DialogFragment() {
                     listener.onCreateButtonClicked(exerciseNameTextView.text.toString())
                 })
             }
+        dialog!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        getDialog()!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(
+            STYLE_NORMAL,
+            R.style.Theme_Tracker_Dialog
+        )
     }
 
     override fun onStart() {

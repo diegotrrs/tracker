@@ -19,6 +19,13 @@ limitations under the License. -->
 
     <data>
         <variable
+            name="viewModel"
+            type="com.example.tracker.exercises.ExercisesViewModel"/>
+
+        <variable
+            name="exercise"
+            type="com.example.tracker.common.entities.Exercise"/>
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
     </data>
@@ -35,11 +42,22 @@ limitations under the License. -->
             style="@style/ListItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Example"
+            android:text="@{exercise.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/moreButton"
+            android:background="#0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
