@@ -9,7 +9,7 @@ class WorkoutAndEntries(
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "entryId",
+        entityColumn = "workoutId",
         entity = Entry::class
 
     )

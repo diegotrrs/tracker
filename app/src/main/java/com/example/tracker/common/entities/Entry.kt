@@ -9,26 +9,26 @@ import androidx.room.*
         ForeignKey(
             entity = Workout::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("entryId"),
+            childColumns = arrayOf("workoutId"),
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = Exercise::class,
             parentColumns = arrayOf("id"),
-            childColumns = arrayOf("unitId"),
+            childColumns = arrayOf("exerciseId"),
             onDelete = ForeignKey.CASCADE
         )
     ),
-    indices =[ Index("entryId"), Index("unitId")]
+    indices =[ Index("workoutId"), Index("exerciseId")]
 )
 data class Entry(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
-    @ColumnInfo(name = "entryId")
-    var entryId: Long = 0,
-    @ColumnInfo(name = "unitId")
-    var unitId: Long
+    @ColumnInfo(name = "workoutId")
+    var workoutId: Long = 0,
+    @ColumnInfo(name = "exerciseId")
+    var exerciseId: Long
 ){
     @Ignore
-    constructor(entryId: Long, unitId: Long) : this(0, entryId, unitId)
+    constructor(workoutId: Long, exerciseId: Long) : this(0, workoutId, exerciseId)
 }

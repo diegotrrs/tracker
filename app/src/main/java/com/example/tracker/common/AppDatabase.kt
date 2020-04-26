@@ -85,21 +85,21 @@ abstract class AppDatabase : RoomDatabase() {
             val jc = userDao.insert( User("jctorres"))
             val workoutjc1 = workoutDao.insert(Workout( 3000, jc))
             val entryjc4 = entriesDao.insert(Entry(workoutjc1, benchPress))
-            setsDao.insert(WSet(5.5, 8,  entryjc4))
-            setsDao.insert(WSet(5.5, 8,  entryjc4))
+            setsDao.insert(WSet(0, 5.5, 8,  entryjc4))
+            setsDao.insert(WSet(1, 5.5, 8,  entryjc4))
 
             val entryjc5 = entriesDao.insert(Entry(workoutjc1, cableCurl))
-            setsDao.insert(WSet(6.5, 8,  entryjc5))
-            setsDao.insert(WSet(6.5, 8,  entryjc5))
+            setsDao.insert(WSet(0, 6.5, 8,  entryjc5))
+            setsDao.insert(WSet(1, 6.5, 8,  entryjc5))
 
             val workoutjc2 = workoutDao.insert(Workout( 4000, jc))
             val entryjc1 = entriesDao.insert(Entry(workoutjc2, legPress))
-            setsDao.insert(WSet(7.5, 8,  entryjc1))
-            setsDao.insert(WSet(7.5, 8,  entryjc1))
+            setsDao.insert(WSet(0, 7.5, 8,  entryjc1))
+            setsDao.insert(WSet(1, 7.5, 8,  entryjc1))
 
             val entryjc3 = entriesDao.insert(Entry(workoutjc2, legCurl))
-            setsDao.insert(WSet(8.5, 8,  entryjc3))
-            setsDao.insert(WSet(8.5, 8,  entryjc3))
+            setsDao.insert(WSet(0, 8.5, 8,  entryjc3))
+            setsDao.insert(WSet(1,8.5, 8,  entryjc3))
         }
     }
 }

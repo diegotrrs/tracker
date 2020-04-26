@@ -10,7 +10,7 @@ class EntryAndSets(
 
 
     @Relation(
-        parentColumn = "unitId",
+        parentColumn = "exerciseId",
         entityColumn = "id",
         entity = Exercise::class
     )

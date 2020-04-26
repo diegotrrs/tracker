@@ -15,7 +15,7 @@ import androidx.room.*
     indices = arrayOf(Index(value = ["entryId"]))
 )
 data class WSet(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     var id: Long = 0,
     @ColumnInfo(name = "weight")
     var weight: Double = 0.0,
@@ -23,13 +23,5 @@ data class WSet(
     var reps: Short = 0,
     @ColumnInfo(name = "entryId")
     var entryId: Long = 0
-) {
-    @Ignore
-    constructor(weight: Double, reps: Short, entryId: Long) : this(
-        0,
-        weight,
-        reps,
-        entryId
-    )
-}
+)
 
