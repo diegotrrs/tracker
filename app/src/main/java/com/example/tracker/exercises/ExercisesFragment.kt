@@ -8,17 +8,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.common.entities.Exercise
 import com.example.tracker.databinding.ExercisesFragmentBinding
+import com.example.tracker.newworkout.NewWorkoutViewModel
 import kotlinx.android.synthetic.main.exercises_fragment.*
 
 
-class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListener {
+class ExercisesFragment : Fragment(), ExerciseListListener {
 
     private lateinit var exercisesViewModel: ExercisesViewModel
+
 
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
@@ -29,6 +33,7 @@ class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListe
     ): View? {
         exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
 
+        val adapter = ExercisesListAdapter(requireContext(), this)
         var binding = DataBindingUtil.inflate<ExercisesFragmentBinding>(
             inflater,
             R.layout.exercises_fragment,
@@ -40,23 +45,6 @@ class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListe
                 viewModel = exercisesViewModel
                 lifecycleOwner = viewLifecycleOwner
 
-                val onDeleteCallback: (Exercise) -> Unit =
-                    { exercise ->
-                        exercisesViewModel.deleteExercise(exercise.id)
-                    }
-
-                val listener = object : ExerciseListListener {
-
-                    override fun onCreateExercise(name: String){
-
-                    }
-                    override fun onDeleteExercise(name: String){
-
-                    }
-
-                }
-
-                val adapter = ExercisesListAdapter(requireContext(), onDeleteCallback)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -73,9 +61,21 @@ class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListe
         return binding.root
     }
 
-    interface ExerciseListListener {
-        fun onCreateExercise(name: String): Unit
-        fun onDeleteExercise(name: String): Unit
+
+
+    override fun onCreateExercise(name: String){
+        exercisesViewModel.createExercise(name);
+    }
+
+    override fun onDeleteExercise(exercise: Exercise){
+        exercisesViewModel.deleteExercise(exercise.id)
+    }
+
+    override fun onExerciseSelected(exercise: Exercise) {
+        println(" On exercise selected >> " + exercise.id + exercise.name);
+        //requireActivity()!!.supportFragmentManager.popBackStack();
+        findNavController().previousBackStackEntry?.savedStateHandle?.set("selectedExercise", exercise.id)
+        findNavController().popBackStack()
     }
 
     private fun displayCreateExerciseDialog() {
@@ -97,9 +97,5 @@ class ExercisesFragment : Fragment(), CreateExerciseDialog.OnCreateExerciseListe
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         toolbar.setTitle(getString(R.string.exercises))
-    }
-
-    override fun onCreateButtonClicked(name: String) {
-        exercisesViewModel.createExercise(name);
     }
 }

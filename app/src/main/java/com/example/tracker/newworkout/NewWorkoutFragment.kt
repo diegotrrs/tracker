@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.tracker.R
 import com.example.tracker.databinding.NewWorkoutFragmentBinding
 import kotlinx.android.synthetic.main.new_workout_fragment.*
@@ -26,6 +28,8 @@ class NewWorkoutFragment : Fragment() {
     ): View {
 
         viewModel = ViewModelProviders.of(this).get(NewWorkoutViewModel::class.java)
+
+
         var binding = DataBindingUtil.inflate<NewWorkoutFragmentBinding>(
             inflater,
             R.layout.new_workout_fragment,
@@ -39,6 +43,20 @@ class NewWorkoutFragment : Fragment() {
         };
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+        val navController = findNavController(this);
+        // We use a String here, but any type that can be put in a Bundle is supported
+        navController.currentBackStackEntry?.savedStateHandle?.getLiveData<Long>("selectedExercise")
+            ?.observe(
+                viewLifecycleOwner, Observer { exercise ->
+                    println("HELL YEAH xxx")
+                    println("Selected Exercise");
+                    println(exercise);
+                })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

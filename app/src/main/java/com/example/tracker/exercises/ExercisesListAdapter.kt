@@ -14,7 +14,7 @@ import com.example.tracker.databinding.ExercisesListItemBinding
 
 class ExercisesListAdapter internal constructor(
     context: Context,
-    val onDeleteCallback: (exercise: Exercise) -> Unit
+    val listener: ExerciseListListener
 ) :
     RecyclerView.Adapter<ExercisesListAdapter.ExercisesViewHolder>() {
     private var exercises = emptyList<Exercise>();
@@ -22,13 +22,17 @@ class ExercisesListAdapter internal constructor(
     inner class ExercisesViewHolder(val binding: ExercisesListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
+            binding.container.setOnClickListener({
+                listener.onExerciseSelected(binding.exercise!!)
+            })
+
             binding.moreButton.setOnClickListener(View.OnClickListener {
                 val popup = PopupMenu(it.context, it)
                 popup.inflate(R.menu.exercises_item_menu)
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.action_delete -> {
-                            onDeleteCallback(binding.exercise!!)
+                            listener.onDeleteExercise(binding.exercise!!)
                             true
                         }
                         else -> false

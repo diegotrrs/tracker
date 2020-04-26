@@ -14,16 +14,11 @@ import kotlinx.android.synthetic.main.create_exercise_dialog.*
 
 
 class CreateExerciseDialog : DialogFragment() {
-    internal lateinit var listener: OnCreateExerciseListener
-
-    interface OnCreateExerciseListener {
-        fun onCreateButtonClicked(exerciseName: kotlin.String)
-    }
+    internal lateinit var listener: ExerciseListListener
 
     companion object {
         const val TAG = "example_dialog"
-
-        fun newInstance(listener: OnCreateExerciseListener) = CreateExerciseDialog().apply {
+        fun newInstance(listener: ExerciseListListener) = CreateExerciseDialog().apply {
             this.listener = listener;
 
         }
@@ -48,7 +43,7 @@ class CreateExerciseDialog : DialogFragment() {
 
                 addButton.setOnClickListener(View.OnClickListener {
                     dismiss()
-                    listener.onCreateButtonClicked(exerciseNameTextView.text.toString())
+                    listener.onCreateExercise(exerciseNameTextView.text.toString())
                 })
             }
         dialog!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);

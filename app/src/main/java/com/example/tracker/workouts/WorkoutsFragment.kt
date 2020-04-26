@@ -48,14 +48,7 @@ class WorkoutsFragment : Fragment() {
 
                 viewModel = workoutsViewModel
                 lifecycleOwner = viewLifecycleOwner
-               /* callback = object : Callback {
-                    override fun action() {
-                        println("ACTION!")
-                        val direction = HomeFragmentDirections.actionNavigationHomeToNavigationNewworkout()
-                        requireActivity().findNavController().navigate(direction)
 
-                    }
-                }*/
 
                 val adapter = WorkoutsListAdapter(requireContext())
                 recyclerView.adapter = adapter
