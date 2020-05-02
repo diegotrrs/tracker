@@ -9,35 +9,35 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.common.entities.WorkoutAndEntries
 
-class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.WorkoutsViewHolder>(){
+class WorkoutsListAdapter internal constructor(context: Context) : RecyclerView.Adapter<WorkoutsListAdapter.ViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
     private var workoutsAndEntries = emptyList<WorkoutAndEntries>();
 
-    inner class WorkoutsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val workoutName : TextView = itemView.findViewById(R.id.nameTextView)
         val entriesText : TextView = itemView.findViewById(R.id.entriesTextView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = inflater.inflate(R.layout.workouts_list_item, parent, false)
-        return WorkoutsViewHolder(itemView )
+        return ViewHolder(itemView )
     }
 
-    override fun onBindViewHolder(holder: WorkoutsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = workoutsAndEntries[position]
         var entries = ""
         current.entries.forEach {
             println("Entry ${it}")
-            entries += "\n ${it.getUnit().name} \n"
+            entries += "\n ${it.getExercise().name} \n"
             it.sets.forEach {
                 entries += " \t> ${it.weight}  ${it.reps}\n"
             }
 
         }
         with(holder){
-            workoutName.text =  current.workout.durationMs.toString()
+            workoutName.text =  current.workout.name
             entriesText.text =  entries
         }
 

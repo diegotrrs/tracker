@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.tracker.common.entities.Workout
 
 @Dao
-interface WorkoutDao {
+interface WorkoutsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(Workout: Workout): Long
 

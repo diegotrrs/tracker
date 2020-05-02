@@ -8,7 +8,7 @@ import androidx.room.Query
 import com.example.tracker.common.entities.WSet
 
 @Dao
-interface SetDao {
+interface SetsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(set: WSet): Long
 

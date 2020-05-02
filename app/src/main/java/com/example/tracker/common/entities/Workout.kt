@@ -17,6 +17,8 @@ import androidx.room.*
 data class Workout(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
+    @ColumnInfo(name="name")
+    var name: String = "",
     @ColumnInfo(name="durationMs")
     var durationMs: Long = 0,
     @ColumnInfo(name="startedMs")
@@ -27,7 +29,7 @@ data class Workout(
     var userId: Long = 0
 ){
     @Ignore
-    constructor( durationMs: Long, userId: Long) : this(0, durationMs,0,0, userId)
+    constructor( name: String, userId: Long) : this(0, name,0,0, 0, userId)
 
 
 }

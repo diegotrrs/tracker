@@ -10,14 +10,17 @@ import com.example.tracker.common.entities.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Exercise::class, WSet::class, User::class, Workout::class, Entry::class], version = 1)
+@Database(
+    entities = [Exercise::class, WSet::class, User::class, Workout::class, Entry::class],
+    version = 1
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun exercisesDao(): ExercisesDao
     abstract fun entriesDao(): EntriesDao
-    abstract fun workoutsDao(): WorkoutDao
-    abstract fun setsDao(): SetDao
-    abstract fun usersDao(): UserDao
+    abstract fun workoutsDao(): WorkoutsDao
+    abstract fun setsDao(): SetsDao
+    abstract fun usersDao(): UsersDao
 
     companion object {
         @Volatile
@@ -68,38 +71,49 @@ abstract class AppDatabase : RoomDatabase() {
          * If you want to start with more words, just add them.
          */
 
-        suspend fun populateDatabase(exercisesDao: ExercisesDao, entriesDao: EntriesDao,
-                                     workoutDao: WorkoutDao, setsDao: SetDao, userDao: UserDao) {
+        suspend fun populateDatabase(
+            exercisesDao: ExercisesDao, entriesDao: EntriesDao,
+            workoutsDao: WorkoutsDao, setsDao: SetsDao, usersDao: UsersDao
+        ) {
             println(" *** POPULATING DATABASE ***")
             exercisesDao.deleteAll()
             setsDao.deleteAll()
-            userDao.deleteAll()
-            workoutDao.deleteAll()
+            usersDao.deleteAll()
+            workoutsDao.deleteAll()
             entriesDao.deleteAll()
 
             val benchPress = exercisesDao.insert(Exercise("bench press"))
             val cableCurl = exercisesDao.insert(Exercise("cable curl"))
             val legPress = exercisesDao.insert(Exercise("leg press"))
             val legCurl = exercisesDao.insert(Exercise("leg curl"))
+            println(" *** 00000")
+            val jc = usersDao.insert(User("jctorres"))
+            println(" *** 000000aaaa")
+            println(jc)
+            TrackerApp().userId = jc
+            println(" *** 000000cccc")
+            val workoutjc1 = workoutsDao.insert(Workout("W1", jc))
 
-            val jc = userDao.insert( User("jctorres"))
-            val workoutjc1 = workoutDao.insert(Workout( 3000, jc))
+            println(" *** 11111")
+
             val entryjc4 = entriesDao.insert(Entry(workoutjc1, benchPress))
-            setsDao.insert(WSet(0, 5.5, 8,  entryjc4))
-            setsDao.insert(WSet(1, 5.5, 8,  entryjc4))
+            setsDao.insert(WSet(5.5, 8, entryjc4))
+            setsDao.insert(WSet( 5.5, 8, entryjc4))
+
+            println(" *** 22222")
 
             val entryjc5 = entriesDao.insert(Entry(workoutjc1, cableCurl))
-            setsDao.insert(WSet(0, 6.5, 8,  entryjc5))
-            setsDao.insert(WSet(1, 6.5, 8,  entryjc5))
+            setsDao.insert(WSet(6.5, 8, entryjc5))
+            setsDao.insert(WSet( 6.5, 8, entryjc5))
 
-            val workoutjc2 = workoutDao.insert(Workout( 4000, jc))
+            val workoutjc2 = workoutsDao.insert(Workout("W2", jc))
             val entryjc1 = entriesDao.insert(Entry(workoutjc2, legPress))
-            setsDao.insert(WSet(0, 7.5, 8,  entryjc1))
-            setsDao.insert(WSet(1, 7.5, 8,  entryjc1))
+            setsDao.insert(WSet(7.5, 8, entryjc1))
+            setsDao.insert(WSet(7.5, 8, entryjc1))
 
             val entryjc3 = entriesDao.insert(Entry(workoutjc2, legCurl))
-            setsDao.insert(WSet(0, 8.5, 8,  entryjc3))
-            setsDao.insert(WSet(1,8.5, 8,  entryjc3))
+            setsDao.insert(WSet( 8.5, 8, entryjc3))
+            setsDao.insert(WSet(8.5, 8, entryjc3))
         }
     }
 }

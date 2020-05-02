@@ -6,7 +6,7 @@ import com.example.tracker.common.entities.User
 import com.example.tracker.common.entities.UserAndWorkoutsAndEntries
 
 @Dao
-interface UserDao {
+interface UsersDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(User: User): Long
 

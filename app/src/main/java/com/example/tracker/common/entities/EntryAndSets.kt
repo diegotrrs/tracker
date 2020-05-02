@@ -14,7 +14,7 @@ class EntryAndSets(
         entityColumn = "id",
         entity = Exercise::class
     )
-    var units: List<Exercise> = listOf(),
+    var exercises: List<Exercise> = listOf(),
 
     @Relation(
         parentColumn = "id",
@@ -25,7 +25,7 @@ class EntryAndSets(
 
 ) {
 
-    fun getUnit(): Exercise {
-        return units[0];
+    fun getExercise(): Exercise {
+        return exercises[0];
     }
 }

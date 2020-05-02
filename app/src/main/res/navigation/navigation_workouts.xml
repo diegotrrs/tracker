@@ -27,17 +27,19 @@
         android:label="@string/workouts"
         tools:layout="@layout/workouts_fragment">
         <action
-            android:id="@+id/action_workouts_to_newworkout"
-            app:destination="@id/newworkoutFragment" />
+            android:id="@+id/action_workouts_to_workout"
+            app:destination="@id/workoutFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newworkoutFragment"
-        android:name="com.example.tracker.newworkout.NewWorkoutFragment"
-        android:label="NewWorkoutx"
-        tools:layout="@layout/new_workout_fragment">
-
+        android:id="@+id/workoutFragment"
+        android:name="com.example.tracker.workout.WorkoutFragment"
+        android:label="Workout"
+        tools:layout="@layout/workout_fragment">
+        <argument
+            android:name="workoutId"
+            app:argType="string" />
         <action
-            android:id="@+id/action_newworkout_to_exercises"
+            android:id="@+id/action_workout_to_exercises"
             app:destination="@id/exercisesFragment" />
     </fragment>
 

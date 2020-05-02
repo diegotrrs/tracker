@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -18,58 +19,41 @@ import com.example.tracker.databinding.WorkoutsFragmentBinding
 import kotlinx.android.synthetic.main.workouts_fragment.*
 
 
-//import com.example.tracker.home.HomeFragmentDirections
-//import com.example.tracker.home.workouts
-
 class WorkoutsFragment : Fragment() {
-
     private lateinit var workoutsViewModel: WorkoutsViewModel
 
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
 
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
-            inflater,
-            R.layout.workouts_fragment,
-            container,
-            false
-        )
-            .apply {
-                appCompatActivity.setSupportActionBar(toolbar)
-                this.createNewWorkoutButton.setOnClickListener {
-                    it.findNavController().navigate(R.id.action_workouts_to_newworkout)
-                }
+            inflater, R.layout.workouts_fragment, container, false
+        ).apply {
+            viewModel = workoutsViewModel
+            lifecycleOwner = viewLifecycleOwner
 
-                viewModel = workoutsViewModel
-                lifecycleOwner = viewLifecycleOwner
-
-
-                val adapter = WorkoutsListAdapter(requireContext())
-                recyclerView.adapter = adapter
-
-                recyclerView.layoutManager =
-                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-
-                this.lifecycleOwner?.let {
-                    workoutsViewModel.workouts.observe(it, Observer { workouts ->
-                        workouts?.let {
-                            if (it.size > 0) {
-                                adapter.setWorkoutsAndEntries(it[0].workoutsAndEntries)
-                            }
-                        }
-                    })
-                }
-
+            appCompatActivity.setSupportActionBar(toolbar)
+            createNewWorkoutButton.setOnClickListener {
+                it.findNavController().navigate(R.id.action_workouts_to_workout)
             }
+
+            var adapter = WorkoutsListAdapter(requireContext())
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            workoutsViewModel.workouts.observe(this.lifecycleOwner!!, Observer { workouts ->
+                if(workouts.size > 0){
+                    adapter.setWorkoutsAndEntries(workouts[0].workoutsAndEntries)
+                }
+            });
+
+        }
 
         return binding.root
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
