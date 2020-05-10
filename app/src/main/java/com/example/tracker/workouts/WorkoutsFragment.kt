@@ -15,20 +15,22 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.common.InjectorUtils
+import com.example.tracker.common.TrackerApp
 import com.example.tracker.databinding.WorkoutsFragmentBinding
 import kotlinx.android.synthetic.main.workouts_fragment.*
 
 
 class WorkoutsFragment : Fragment() {
-    private lateinit var workoutsViewModel: WorkoutsViewModel
+    private val workoutsViewModel: WorkoutsViewModel by viewModels {
+        InjectorUtils.provideWorkoutsViewModelFactory(requireContext())
+    }
 
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel::class.java)
-
         var binding = DataBindingUtil.inflate<WorkoutsFragmentBinding>(
             inflater, R.layout.workouts_fragment, container, false
         ).apply {
@@ -40,17 +42,18 @@ class WorkoutsFragment : Fragment() {
                 it.findNavController().navigate(R.id.action_workouts_to_workout)
             }
 
-            var adapter = WorkoutsListAdapter(requireContext())
+            var adapter = WorkoutsListAdapter()
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            workoutsViewModel.workouts.observe(this.lifecycleOwner!!, Observer { workouts ->
-                if(workouts.size > 0){
+            workoutsViewModel.getWorkoutsByUser(TrackerApp().userId).observe(this.lifecycleOwner!!, Observer { workouts ->
+                println(" WORKOUTS FRAGMENT Z >>>> ")
+                println(workouts)
+                if (workouts.isNotEmpty()) {
                     adapter.setWorkoutsAndEntries(workouts[0].workoutsAndEntries)
                 }
             });
 
         }
-
         return binding.root
     }
 
@@ -61,7 +64,6 @@ class WorkoutsFragment : Fragment() {
         toolbar?.setNavigationOnClickListener { view ->
             view.findNavController().navigateUp()
         }
-
     }
 
     interface Callback {

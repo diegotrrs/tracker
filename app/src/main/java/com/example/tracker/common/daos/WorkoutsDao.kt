@@ -1,10 +1,12 @@
 package com.example.tracker.common.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.tracker.common.entities.Workout
+import com.example.tracker.common.entities.WorkoutAndEntries
 
 @Dao
 interface WorkoutsDao {
@@ -14,6 +16,8 @@ interface WorkoutsDao {
     @Query("DELETE FROM workouts")
     suspend fun deleteAll()
 
+    @Query("SELECT * FROM workouts WHERE id =:workoutId")
+    fun getWorkoutById(workoutId: Long): LiveData<List<WorkoutAndEntries>>
 
     /*@Query("SELECT * FROM workouts WHERE durationMs =:duration")
     fun findByWorkoutDuration(duration: Long): LiveData<List<WorkoutAndEntries>>

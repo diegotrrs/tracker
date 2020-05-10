@@ -13,18 +13,15 @@ import com.example.tracker.databinding.ExercisesListItemBinding
 
 
 class ExercisesListAdapter internal constructor(
-    context: Context,
     val listener: ExerciseListListener
-) :
-    RecyclerView.Adapter<ExercisesListAdapter.ExercisesViewHolder>() {
+) : RecyclerView.Adapter<ExercisesListAdapter.ExercisesViewHolder>() {
     private var exercises = emptyList<Exercise>();
 
-    inner class ExercisesViewHolder(val binding: ExercisesListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ExercisesViewHolder(val binding: ExercisesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.container.setOnClickListener({
+            binding.container.setOnClickListener {
                 listener.onExerciseSelected(binding.exercise!!)
-            })
+            }
 
             binding.moreButton.setOnClickListener(View.OnClickListener {
                 val popup = PopupMenu(it.context, it)
@@ -46,8 +43,7 @@ class ExercisesListAdapter internal constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExercisesViewHolder {
         return ExercisesViewHolder(
             DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.exercises_list_item, parent, false
+                LayoutInflater.from(parent.context), R.layout.exercises_list_item, parent, false
             )
         )
     }

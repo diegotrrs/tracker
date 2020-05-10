@@ -5,12 +5,14 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.common.InjectorUtils
 import com.example.tracker.common.entities.Exercise
 import com.example.tracker.databinding.ExercisesFragmentBinding
 import com.example.tracker.workout.WorkoutFragment.Companion.SELECTED_EXERCISE
@@ -19,15 +21,16 @@ import kotlinx.android.synthetic.main.exercises_fragment.*
 
 class ExercisesFragment : Fragment(), ExerciseListListener {
 
-    private lateinit var exercisesViewModel: ExercisesViewModel
-    inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
+    private val exercisesViewModel: ExercisesViewModel by viewModels {
+        InjectorUtils.provideExercisesViewModelFactory(requireContext())
+    }
+
+    private inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        exercisesViewModel = ViewModelProviders.of(this).get(ExercisesViewModel::class.java)
-
-        val adapter = ExercisesListAdapter(requireContext(), this)
+        val adapter = ExercisesListAdapter( this)
         var binding = DataBindingUtil.inflate<ExercisesFragmentBinding>(
             inflater, R.layout.exercises_fragment, container, false
         ).apply {

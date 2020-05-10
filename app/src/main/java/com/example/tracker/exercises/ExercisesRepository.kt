@@ -10,6 +10,7 @@ class ExercisesRepository private constructor(private val exercisesDao: Exercise
 
     suspend fun createExercise(exerciseName: String) = exercisesDao.insert(Exercise(exerciseName))
     suspend fun deleteExercise(exerciseId: Long) = exercisesDao.deleteExercise(exerciseId)
+    fun getExercises() = exercisesDao.getAll()
 
     companion object {
         @Volatile

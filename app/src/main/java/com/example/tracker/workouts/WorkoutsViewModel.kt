@@ -3,20 +3,16 @@ package com.example.tracker.workouts
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tracker.common.AppDatabase
-import com.example.tracker.common.AppRepository
 import com.example.tracker.common.entities.UserAndWorkoutsAndEntries
 
-class WorkoutsViewModel(application: Application) : AndroidViewModel(application) {
+class WorkoutsViewModel(val workoutsRepository: WorkoutsRepository, userId: Long) : ViewModel() {
+    val workouts = workoutsRepository.getWorkouts(userId)
 
-    private val appRepository: AppRepository
-    val workouts: LiveData<List<UserAndWorkoutsAndEntries>>
 
-    init {
-        var usersDao = AppDatabase.getDatabase(application, viewModelScope).usersDao();
-        var exercisesDao = AppDatabase.getDatabase(application, viewModelScope).exercisesDao();
-        appRepository = AppRepository(usersDao, exercisesDao)
-        workouts = appRepository.workouts
+    fun getWorkoutsByUser(userId: Long): LiveData<List<UserAndWorkoutsAndEntries>> {
+        return workoutsRepository.getWorkouts(userId);
     }
 }

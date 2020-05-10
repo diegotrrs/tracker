@@ -6,6 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
@@ -13,29 +14,30 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
+import com.example.tracker.common.InjectorUtils
 import com.example.tracker.databinding.WorkoutFragmentBinding
+import com.example.tracker.workouts.WorkoutsViewModel
 import kotlinx.android.synthetic.main.workout_fragment.*
 
 
 class WorkoutFragment : Fragment() {
 
+    private val workoutViewModel: WorkoutViewModel by viewModels {
+        var workoutId: Long = args.workoutId.toLong();
+        InjectorUtils.provideWorkoutViewModelFactory(requireContext(), workoutId)
+    }
+    private val args: WorkoutFragmentArgs by navArgs()
+
     companion object {
         const val SELECTED_EXERCISE = "selectedExercise"
     }
 
-
-
-    private lateinit var viewModel: WorkoutViewModel
     private lateinit var binding: WorkoutFragmentBinding
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
-
-    private val args: WorkoutFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
-        viewModel = ViewModelProviders.of(this).get(WorkoutViewModel::class.java)
         binding = DataBindingUtil.inflate<WorkoutFragmentBinding>(
             inflater, R.layout.workout_fragment, container, false
         ).apply {
@@ -76,8 +78,8 @@ class WorkoutFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.getItemId() === R.id.action_save) {
-            println("Save workout" + binding.exerciseNameTextView.text.toString())
+        if (menuItem.getItemId().equals(R.id.action_save)) {
+            // println("Save workout"  binding.exerciseNameTextView.text.toString())
             // viewModel.createWorkout(binding.exerciseNameTextView.text.toString())
         }
         return super.onOptionsItemSelected(menuItem)

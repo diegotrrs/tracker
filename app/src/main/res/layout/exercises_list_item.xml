@@ -13,29 +13,25 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="viewModel"
-            type="com.example.tracker.exercises.ExercisesViewModel"/>
+            name="exercise"
+            type="com.example.tracker.common.entities.Exercise" />
 
         <variable
-            name="exercise"
-            type="com.example.tracker.common.entities.Exercise"/>
-        <variable
             name="clickListener"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
-        android:layout_margin="5dip"
-        android:background="@drawable/workouts_list_item_background"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/exercises_list_item_height">
+        android:layout_height="@dimen/exercises_list_item_height"
+        android:layout_margin="5dip"
+        android:background="@drawable/workouts_list_item_background">
 
         <TextView
             android:id="@+id/exerciseNameTextView"
@@ -43,20 +39,20 @@ limitations under the License. -->
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{exercise.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/moreButton"
-            android:background="#0000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_more"
+            android:background="#0000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
