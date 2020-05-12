@@ -17,7 +17,7 @@ interface WorkoutsDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM workouts WHERE id =:workoutId")
-    fun getWorkoutById(workoutId: Long): LiveData<List<WorkoutAndEntries>>
+    fun getWorkoutById(workoutId: Long): LiveData<WorkoutAndEntries>
 
     /*@Query("SELECT * FROM workouts WHERE durationMs =:duration")
     fun findByWorkoutDuration(duration: Long): LiveData<List<WorkoutAndEntries>>

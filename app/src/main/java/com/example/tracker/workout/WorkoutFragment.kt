@@ -1,6 +1,5 @@
 package com.example.tracker.workout
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -16,52 +15,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.common.InjectorUtils
 import com.example.tracker.databinding.WorkoutFragmentBinding
-import com.example.tracker.workouts.WorkoutsViewModel
 import kotlinx.android.synthetic.main.workout_fragment.*
 
 
 class WorkoutFragment : Fragment() {
 
+    private val args: WorkoutFragmentArgs by navArgs()
     private val workoutViewModel: WorkoutViewModel by viewModels {
         var workoutId: Long = args.workoutId.toLong();
         InjectorUtils.provideWorkoutViewModelFactory(requireContext(), workoutId)
     }
-    private val args: WorkoutFragmentArgs by navArgs()
 
     companion object {
         const val SELECTED_EXERCISE = "selectedExercise"
     }
 
-    private lateinit var binding: WorkoutFragmentBinding
     inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate<WorkoutFragmentBinding>(
+        var binding = DataBindingUtil.inflate<WorkoutFragmentBinding>(
             inflater, R.layout.workout_fragment, container, false
         ).apply {
             appCompatActivity.setSupportActionBar(toolbar)
-            this.addExerciseButton.setOnClickListener {
-                it.findNavController().navigate(R.id.action_workout_to_exercises)
-            }
-
             lifecycleOwner = viewLifecycleOwner
+            viewModel = workoutViewModel
 
             val adapter = WorkoutEntriesAdapter(requireContext())
             entriesRecyclerView.adapter = adapter
-
             entriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-            /* this.lifecycleOwner?.let {
-                 viewModel!!.entries.observe(it, Observer { entries ->
-                     entries?.let {
-                         if (it.size > 0) {
-                             adapter.setEntriesAndSets(entries);
-                         }
-                     }
-                 })
-             }*/
+            workoutViewModel.workoutAndEntries.observe(viewLifecycleOwner, Observer { result ->
+
+            })
+
+            this.addExerciseButton.setOnClickListener {
+                it.findNavController().navigate(R.id.action_workout_to_exercises)
+            }
         };
         setHasOptionsMenu(true)
         return binding.root
@@ -92,10 +83,6 @@ class WorkoutFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         toolbar.setTitle(getString(R.string.workout))
-    }
-
-    interface Callback {
-        fun action()
     }
 
 }

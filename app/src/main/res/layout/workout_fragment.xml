@@ -43,7 +43,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/exerciseNameTextView"
-                android:text=""
+                android:text="@{viewModel.workoutAndEntries.workout.name}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
