@@ -37,7 +37,7 @@ limitations under the License. -->
 
         <TextView
             android:id="@+id/nameTextView"
-            style="@style/ListItem"
+            style="@style/Theme.Tracker.Exercise.Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{workoutAndEntries.workout.name}"
@@ -47,7 +47,7 @@ limitations under the License. -->
 
         <TextView
             android:id="@+id/entriesTextView"
-            style="@style/ListItem"
+            style="@style/Theme.Tracker.Exercise.Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entries"

@@ -25,7 +25,7 @@ class EntryAndSets(
 
 ) {
 
-    fun getExercise(): Exercise {
+     fun getExercise(): Exercise {
         return exercises[0];
     }
 }

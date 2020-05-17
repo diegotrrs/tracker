@@ -46,7 +46,10 @@ class WorkoutFragment : Fragment() {
             entriesRecyclerView.adapter = adapter
             entriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
-            workoutViewModel.workoutAndEntries.observe(viewLifecycleOwner, Observer { result ->
+            workoutViewModel.workoutAndEntries.observe(viewLifecycleOwner, Observer { workoutAndEntries ->
+                if (workoutAndEntries.entries.isNotEmpty()) {
+                    adapter.setEntriesAndSets(workoutAndEntries.entries)
+                }
 
             })
 

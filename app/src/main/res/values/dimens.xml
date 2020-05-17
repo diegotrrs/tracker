@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="workouts_list_item_width">160dip</dimen>
     <dimen name="exercises_list_item_height">60dip</dimen>
+    <dimen name="workout_side_margin">20dip</dimen>
+    <dimen name="workout_top_margin">20dip</dimen>
+    <dimen name="workout_exercises_list_item_height">120dip</dimen>
+    <dimen name="workout_exercises_list_top_margin">20dip</dimen>
 </resources>

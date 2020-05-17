@@ -17,6 +17,8 @@
         android:id="@+id/workout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/workout_side_margin"
+        android:layout_marginRight="@dimen/workout_side_margin"
         tools:context=".workout.WorkoutFragment">
 
         <androidx.appcompat.widget.Toolbar
@@ -28,24 +30,21 @@
             app:menu="@menu/workout_menu"
             app:navigationIcon="@drawable/ic_back" />
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/exerciseNameTextInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:layout_marginTop="20dip"
-            android:layout_marginRight="20dip"
+            android:layout_marginTop="@dimen/workout_top_margin"
             android:hint="@string/exercise_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/exerciseNameTextView"
-                android:text="@{viewModel.workoutAndEntries.workout.name}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="@{viewModel.workoutAndEntries.workout.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
