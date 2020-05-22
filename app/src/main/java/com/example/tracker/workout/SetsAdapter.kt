@@ -17,7 +17,7 @@ class SetsAdapter internal constructor(var context: Context, val entryId: Long, 
     inner class ViewHolder(var binding: SetsListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.container.setOnLongClickListener {
-                SetDialog.createDialogForEdition(binding.set, listener).show((context as AppCompatActivity).supportFragmentManager, SetDialog.TAG)
+                EditSetDialog.getInstance(binding.set, listener).show((context as AppCompatActivity).supportFragmentManager, EditSetDialog.TAG)
                 true;
             }
         }

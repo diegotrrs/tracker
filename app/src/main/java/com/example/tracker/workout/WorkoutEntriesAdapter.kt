@@ -25,7 +25,7 @@ class WorkoutEntriesAdapter internal constructor(var context: Context, val liste
     }
 
     private fun displayCreateSetDialog(entryId: Long) {
-        SetDialog.createDialogForCreation(entryId, listener).show((context as AppCompatActivity).supportFragmentManager, SetDialog.TAG)
+        CreateSetDialog.getInstance(entryId, listener).show((context as AppCompatActivity).supportFragmentManager, CreateSetDialog.TAG)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
