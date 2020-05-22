@@ -8,4 +8,5 @@
     <dimen name="workout_top_margin">20dip</dimen>
     <dimen name="workout_exercises_list_item_height">120dip</dimen>
     <dimen name="workout_exercises_list_top_margin">20dip</dimen>
+    <dimen name="sets_list_margin">5dip</dimen>
 </resources>

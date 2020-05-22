@@ -1,6 +1,5 @@
 package com.example.tracker.workout
 
-import com.example.tracker.common.daos.UsersDao
 import com.example.tracker.common.daos.WorkoutsDao
 
 class WorkoutRepository private constructor(private val workoutsDao: WorkoutsDao) {

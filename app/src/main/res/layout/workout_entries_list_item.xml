@@ -14,9 +14,11 @@ limitations under the License. -->
 
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="entryAndSets"
             type="com.example.tracker.common.entities.EntryAndSets" />
@@ -24,18 +26,18 @@ limitations under the License. -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
-        android:layout_marginTop="@dimen/workout_exercises_list_top_margin"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/workout_exercises_list_item_height"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/workout_exercises_list_top_margin"
         android:background="@drawable/workouts_list_item_background">
 
         <TextView
-            android:id="@+id/exerciseNameTextView"
-            style="@style/Theme.Tracker.Exercise.Name"
+            android:id="@+id/entryNameTextView"
+            style="@style/Theme.Tracker.Entry.Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
             android:text="@{entryAndSets.exercise.name}"
+            tools:text="@tools:sample/lorem"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,6 +50,27 @@ limitations under the License. -->
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_more" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/setsRecyclerView"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintWidth_percent=".90"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/moreButton"
+            app:layout_constraintEnd_toStartOf="@+id/addSetButton"
+            tools:listitem="@layout/sets_list_item" />
+
+
+        <ImageButton
+            android:id="@+id/addSetButton"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/setsRecyclerView"
+            app:layout_constraintStart_toEndOf="@+id/setsRecyclerView"
+            app:layout_constraintTop_toTopOf="@+id/setsRecyclerView"
+            app:srcCompat="@drawable/ic_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

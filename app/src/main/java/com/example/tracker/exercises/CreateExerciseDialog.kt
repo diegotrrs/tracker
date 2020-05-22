@@ -32,7 +32,7 @@ class CreateExerciseDialog : DialogFragment() {
 
         var binding = DataBindingUtil.inflate<CreateExerciseDialogBinding>(
             inflater,
-            R.layout.create_exercise_dialog,
+            R.layout.set_dialog,
             container,
             false
         )
@@ -41,9 +41,9 @@ class CreateExerciseDialog : DialogFragment() {
                     dismiss()
                 })
 
-                addButton.setOnClickListener(View.OnClickListener {
+                actionButton.setOnClickListener(View.OnClickListener {
                     dismiss()
-                    listener.onCreateExercise(exerciseNameTextView.text.toString())
+                    listener.onCreateExercise(entryNameTextView.text.toString())
                 })
             }
         dialog!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);

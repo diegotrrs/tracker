@@ -33,11 +33,11 @@
     </style>
 
 
-    <style name="Theme.Tracker.Exercise">
+    <style name="Theme.Tracker.Entry">
 
     </style>
 
-    <style name="Theme.Tracker.Exercise.Name">
+    <style name="Theme.Tracker.Entry.Name">
         <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/black</item>
     </style>

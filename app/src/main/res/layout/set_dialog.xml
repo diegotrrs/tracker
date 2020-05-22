@@ -5,7 +5,17 @@
 
     <data>
 
+        <variable
+            name="isCreationMode"
+            type="boolean" />
 
+        <variable
+            name="weight"
+            type="Double" />
+
+        <variable
+            name="reps"
+            type="Short" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,17 +31,36 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/exerciseNameTextInputLayout"
+            android:id="@+id/weightTextInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:hint="@string/exercise"
+            android:hint="@string/kg"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/entryNameTextView"
+                android:id="@+id/weightTextView"
+                android:text="@{weight.toString()}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/repsTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:hint="@string/reps"
+            app:layout_constraintTop_toBottomOf="@+id/weightTextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/repsTextView"
+                android:text="@{reps.toString()}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -44,9 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
             android:layout_marginLeft="5dip"
-            android:text="@string/add"
-            app:layout_constraintRight_toRightOf="@+id/exerciseNameTextInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseNameTextInputLayout" />
+            android:text="@{isCreationMode ? @string/add : @string/save}"
+            app:layout_constraintRight_toRightOf="@+id/repsTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/repsTextInputLayout" />
 
 
         <Button
@@ -58,7 +87,7 @@
             android:layout_marginRight="5dip"
             android:text="@string/cancel"
             app:layout_constraintRight_toLeftOf="@+id/actionButton"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseNameTextInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/repsTextInputLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

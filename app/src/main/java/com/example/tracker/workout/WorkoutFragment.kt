@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracker.R
 import com.example.tracker.common.InjectorUtils
+import com.example.tracker.common.entities.WSet
 import com.example.tracker.databinding.WorkoutFragmentBinding
 import kotlinx.android.synthetic.main.workout_fragment.*
 
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.workout_fragment.*
 class WorkoutFragment : Fragment() {
 
     private val args: WorkoutFragmentArgs by navArgs()
+
     private val workoutViewModel: WorkoutViewModel by viewModels {
         var workoutId: Long = args.workoutId.toLong();
         InjectorUtils.provideWorkoutViewModelFactory(requireContext(), workoutId)
@@ -42,7 +44,17 @@ class WorkoutFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = workoutViewModel
 
-            val adapter = WorkoutEntriesAdapter(requireContext())
+            val adapter = WorkoutEntriesAdapter(requireContext(), object : SetsListener {
+                override fun onCreateSet(entryId: Long, weight: Double, reps: Short) {
+                    viewModel!!.createSet(entryId, weight, reps)
+                    println("On  create set entryId${entryId} weight${weight}  reps${reps} ");
+                }
+
+                override fun onEditSet(set: WSet, weight: Double, reps: Short) {
+                    viewModel!!.editSet(set, weight, reps)
+                    println("On  edit set set ${set.id} ${set.entryId} weight${weight}  reps${reps} ");
+                }
+            })
             entriesRecyclerView.adapter = adapter
             entriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 

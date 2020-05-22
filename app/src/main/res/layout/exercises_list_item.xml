@@ -34,8 +34,8 @@ limitations under the License. -->
         android:background="@drawable/workouts_list_item_background">
 
         <TextView
-            android:id="@+id/exerciseNameTextView"
-            style="@style/Theme.Tracker.Exercise.Name"
+            android:id="@+id/entryNameTextView"
+            style="@style/Theme.Tracker.Entry.Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{exercise.name}"
