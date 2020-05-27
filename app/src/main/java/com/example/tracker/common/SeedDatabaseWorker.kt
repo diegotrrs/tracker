@@ -16,7 +16,6 @@ class SeedDatabaseWorker(
     context: Context, workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
-        println("SeedDatabaseWorker 1")
         try {
             val database = AppDatabase.getInstance(applicationContext)
             val exercisesDao = database.exercisesDao()
@@ -31,9 +30,7 @@ class SeedDatabaseWorker(
             val legCurl = exercisesDao.insert(Exercise("leg curl"))
 
             val jc = usersDao.insert(User("jctorres"))
-            println(" *** USER ID DATABAASE")
-            println(jc)
-            TrackerApp().userId = jc
+            TrackerApp.userId = jc
 
             val workoutjc1 = workoutsDao.insert(Workout("W1", jc))
             val entryjc4 = entriesDao.insert(Entry(workoutjc1, benchPress))

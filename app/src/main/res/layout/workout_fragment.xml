@@ -6,14 +6,19 @@
 
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.tracker.workout.WorkoutViewModel" />
 
+        <variable
+            name="isCreationMode"
+            type="Boolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/workout"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/workout_side_margin"
@@ -27,7 +32,8 @@
             app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/workout_menu"
-            app:navigationIcon="@drawable/ic_back" />
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@{isCreationMode ? @string/new_workout : @string/workout}" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/exerciseNameTextInputLayout"
@@ -43,7 +49,7 @@
                 android:id="@+id/entryNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@{viewModel.workoutAndEntries.workout.name}" />
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
 

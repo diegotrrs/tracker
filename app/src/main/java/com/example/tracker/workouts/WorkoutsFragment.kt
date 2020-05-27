@@ -26,7 +26,7 @@ class WorkoutsFragment : Fragment() {
         InjectorUtils.provideWorkoutsViewModelFactory(requireContext())
     }
 
-    inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
+    private inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -45,9 +45,7 @@ class WorkoutsFragment : Fragment() {
             var adapter = WorkoutsListAdapter()
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            workoutsViewModel.getWorkoutsByUser(TrackerApp().userId).observe(this.lifecycleOwner!!, Observer { workouts ->
-                println(" WORKOUTS FRAGMENT Z >>>> ")
-                println(workouts)
+            workoutsViewModel.getWorkoutsByUser(TrackerApp.userId).observe(this.lifecycleOwner!!, Observer { workouts ->
                 if (workouts.isNotEmpty()) {
                     adapter.setWorkoutsAndEntries(workouts[0].workoutsAndEntries)
                 }

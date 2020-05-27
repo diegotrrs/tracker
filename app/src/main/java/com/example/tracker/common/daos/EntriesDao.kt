@@ -17,6 +17,9 @@ interface EntriesDao {
     @Query("DELETE FROM entries")
     suspend fun deleteAll()
 
+    @Query( "DELETE FROM entries where id=:entryId")
+    suspend fun deleteEntry(entryId: Long)
+
     @Query("SELECT * FROM entries")
     fun getAll(): LiveData<List<Entry>>
 

@@ -4,5 +4,9 @@ import android.app.Application
 import com.example.tracker.common.entities.User
 
 class TrackerApp: Application(){
-    var userId: Long = 1;
+
+    companion object {
+        var userId: Long = 1
+    }
+
 }

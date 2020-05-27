@@ -1,6 +1,5 @@
 package com.example.tracker.exercises
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,9 @@ import com.example.tracker.common.entities.Exercise
 import com.example.tracker.databinding.ExercisesListItemBinding
 
 
-class ExercisesListAdapter internal constructor(
+class ExercisesAdapter internal constructor(
     val listener: ExerciseListListener
-) : RecyclerView.Adapter<ExercisesListAdapter.ExercisesViewHolder>() {
+) : RecyclerView.Adapter<ExercisesAdapter.ExercisesViewHolder>() {
     private var exercises = emptyList<Exercise>();
 
     inner class ExercisesViewHolder(val binding: ExercisesListItemBinding) : RecyclerView.ViewHolder(binding.root) {

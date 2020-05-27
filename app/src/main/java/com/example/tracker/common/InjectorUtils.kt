@@ -3,6 +3,7 @@ package com.example.tracker.common
 import android.content.Context
 import com.example.tracker.exercises.ExercisesRepository
 import com.example.tracker.exercises.ExercisesViewModelFactory
+import com.example.tracker.workout.EntriesRepository
 import com.example.tracker.workout.SetsRepository
 import com.example.tracker.workout.WorkoutRepository
 import com.example.tracker.workout.WorkoutViewModelFactory
@@ -19,6 +20,11 @@ object InjectorUtils {
     private fun getExercisesRepository(context: Context): ExercisesRepository {
         var database = AppDatabase.getInstance(context.applicationContext);
         return ExercisesRepository.getInstance(database.exercisesDao())
+    }
+
+    private fun getEntriesRepository(context: Context): EntriesRepository {
+        var database = AppDatabase.getInstance(context.applicationContext);
+        return EntriesRepository.getInstance(database.entriesDao())
     }
 
     private fun getWorkoutRepository(context: Context): WorkoutRepository {
@@ -40,6 +46,6 @@ object InjectorUtils {
     }
 
     fun provideWorkoutViewModelFactory(context: Context, workoutId: Long): WorkoutViewModelFactory {
-        return WorkoutViewModelFactory(getWorkoutRepository(context), getSetsRepository(context), workoutId)
+        return WorkoutViewModelFactory(getWorkoutRepository(context), getSetsRepository(context), getEntriesRepository(context), workoutId)
     }
 }

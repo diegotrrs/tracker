@@ -17,10 +17,18 @@ class SetsAdapter internal constructor(var context: Context, val entryId: Long, 
     inner class ViewHolder(var binding: SetsListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.container.setOnLongClickListener {
-                EditSetDialog.getInstance(binding.set, listener).show((context as AppCompatActivity).supportFragmentManager, EditSetDialog.TAG)
-                true;
+                openEditSetDialog(binding)
+            }
+
+            binding.container.setOnClickListener {
+                openEditSetDialog(binding)
             }
         }
+    }
+
+    fun openEditSetDialog(binding: SetsListItemBinding): Boolean {
+        EditSetDialog.getInstance(binding.set, listener).show((context as AppCompatActivity).supportFragmentManager, EditSetDialog.TAG)
+        return true;
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

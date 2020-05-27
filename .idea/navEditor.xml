@@ -446,18 +446,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="newworkoutFragment">
+                  <entry key="workoutFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="292" />
+                            <option name="x" value="12" />
                             <option name="y" value="12" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_newworkout_to_exercises">
+                            <entry key="action_workout_to_exercises">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -478,7 +478,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_workouts_to_newworkout">
+                            <entry key="action_workouts_to_workout">
                               <value>
                                 <LayoutPositions />
                               </value>

@@ -16,10 +16,10 @@ class WorkoutsListAdapter internal constructor() : RecyclerView.Adapter<Workouts
 
     inner class ViewHolder(val binding: WorkoutsListItemBinding):  RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.container.setOnClickListener(View.OnClickListener {
+            binding.container.setOnClickListener {
                 val direction = WorkoutsFragmentDirections.actionWorkoutsToWorkout(binding!!.workoutAndEntries!!.workout.id.toString())
                 it!!.findNavController().navigate(direction)
-            })
+            }
         }
     }
 
@@ -43,7 +43,6 @@ class WorkoutsListAdapter internal constructor() : RecyclerView.Adapter<Workouts
     private fun buildWorkoutEntries(current: WorkoutAndEntries): String {
         var entries = ""
         current.entries.forEach {
-            println("Entry ${it}")
             entries += "\n ${it.getExercise().name} \n"
             it.sets.forEach {
                 entries += " \t> ${it.weight}  ${it.reps}\n"

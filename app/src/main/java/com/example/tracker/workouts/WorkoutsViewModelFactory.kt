@@ -10,6 +10,6 @@ class WorkoutsViewModelFactory(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return WorkoutsViewModel(repository, TrackerApp().userId) as T
+        return WorkoutsViewModel(repository, TrackerApp.userId) as T
     }
 }

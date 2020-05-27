@@ -45,8 +45,6 @@ class EditSetDialog : DialogFragment() {
 
             title = getString(R.string.edit_set)
 
-            println("this.reps ${this.reps} this.weight ${this.weight}");
-
             actionButton.setOnClickListener(View.OnClickListener {
                 dismiss()
                 var weight = weightTextView.text.toString().toDouble();

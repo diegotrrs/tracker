@@ -37,6 +37,7 @@
         tools:layout="@layout/workout_fragment">
         <argument
             android:name="workoutId"
+            android:defaultValue="-1"
             app:argType="string" />
         <action
             android:id="@+id/action_workout_to_exercises"

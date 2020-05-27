@@ -1,13 +1,13 @@
 package com.example.tracker.exercises
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,10 +27,11 @@ class ExercisesFragment : Fragment(), ExerciseListListener {
 
     private inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val adapter = ExercisesListAdapter( this)
+        val adapter = ExercisesAdapter( this)
         var binding = DataBindingUtil.inflate<ExercisesFragmentBinding>(
             inflater, R.layout.exercises_fragment, container, false
         ).apply {
@@ -42,7 +43,6 @@ class ExercisesFragment : Fragment(), ExerciseListListener {
             recyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
             exercisesViewModel.exercises.observe(lifecycleOwner!!, Observer { exercises ->
-                println("WHAT WHAT WHAT!!")
                 adapter.setExercises(exercises)
             })
 
@@ -60,6 +60,7 @@ class ExercisesFragment : Fragment(), ExerciseListListener {
     }
 
     override fun onExerciseSelected(exercise: Exercise) {
+        Log.d(this.javaClass.canonicalName, "onExerciseSelected ${exercise.id}");
         findNavController().previousBackStackEntry?.savedStateHandle?.set(
             SELECTED_EXERCISE, exercise.id
         )
@@ -79,10 +80,5 @@ class ExercisesFragment : Fragment(), ExerciseListListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.exercises_menu, menu)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        toolbar.setTitle(getString(R.string.exercises))
     }
 }

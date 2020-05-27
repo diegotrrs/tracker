@@ -7,7 +7,6 @@ import com.example.tracker.common.entities.UserAndWorkoutsAndEntries
 
 class WorkoutsRepository private constructor(private val workoutsDao: WorkoutsDao, private val usersDao: UsersDao) {
     fun getWorkouts(userId: Long): LiveData<List<UserAndWorkoutsAndEntries>> {
-        println(" > WORKOUTS REPOSITORY ${userId} > ");
         return usersDao.getUser(userId);
     }
 

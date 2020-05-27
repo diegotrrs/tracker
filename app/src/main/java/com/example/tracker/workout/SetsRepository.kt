@@ -19,6 +19,5 @@ class SetsRepository private constructor(private val setsDao: SetsDao) {
         fun getInstance(setsDao: SetsDao) = instance ?: synchronized(this) {
             instance ?: SetsRepository(setsDao).also { instance = it }
         }
-
     }
 }
