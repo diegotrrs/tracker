@@ -72,8 +72,8 @@ class WorkoutFragment : Fragment(), SetsListener, WorkoutEntriesListener {
                     }
                     var workoutName = workoutAndEntries.workout.name;
                     var workoutNameTextFieldValue: String =  binding.entryNameTextView.getText().toString();
-                    println("are different ${workoutNameTextFieldValue !== workoutName} ?  ${workoutNameTextFieldValue} ${workoutName}")
-                    if(!workoutAndEntries.workout.name.isEmpty() && workoutNameTextFieldValue !== workoutName){
+                    println("are different ${workoutNameTextFieldValue === workoutName} ?  ${workoutNameTextFieldValue} ${workoutName}")
+                    if(!workoutAndEntries.workout.name.isEmpty() && workoutNameTextFieldValue === workoutName){
                         println("Updating the name...");
                         binding.entryNameTextView.setText(workoutAndEntries.workout.name)
                     }

@@ -17,13 +17,16 @@ class WorkoutViewModel(
 
     private val workoutIdLVD: MutableLiveData<Long> = MutableLiveData(workoutId)
 
+    val workoutAndEntries = Transformations.switchMap(workoutIdLVD){
+        id -> workoutRepository.getWorkoutById(workoutId)
+    }
    /* val workoutAndEntries = workoutIdLVD.switchMap { id ->
         liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
-            emit(workoutRepository.getWorkoutById(workoutId))
+            emit(workoutRepository.getWorkoutById(workoutId).value)
         }
     }*/
 
-    var workoutAndEntries = workoutRepository.getWorkoutById(workoutId)
+    //var workoutAndEntries = workoutRepository.getWorkoutById(workoutId)
 
 
     /*val workoutAndEntries: LiveData<WorkoutAndEntries> = liveData {
@@ -37,21 +40,22 @@ class WorkoutViewModel(
 
     }*/
 
-    fun reloadWorkoutAndEntries(): LiveData<WorkoutAndEntries>{
+   /* fun reloadWorkoutAndEntries(): LiveData<WorkoutAndEntries>{
         println("> WorkoutViewModel:: workoutId ${workoutId}")
         return workoutRepository.getWorkoutById(workoutId)
-    }
+    }*/
 
     fun createWorkout(name: String) {
         viewModelScope.launch {
+            println("WorkoutViewModel::createWorkout  old workout id> ${workoutId}")
             workoutId = workoutRepository.createWorkout(name)
             workoutIdLVD.postValue(workoutId)
-            println("WorkoutViewModel::createWorkout > ${workoutId}")
+            println("WorkoutViewModel::createWorkout  new workout id> ${workoutId}")
             //workoutAndEntries = reloadWorkoutAndEntries()
             //workoutAndEntries.postValue(reloadWorkoutAndEntries().value)
-            println("WorkoutViewModel::createWorkout result> x")
+            //println("WorkoutViewModel::createWorkout result> x")
 
-            println(workoutAndEntries.value)
+            //println(workoutAndEntries.value)
         }
     }
 
