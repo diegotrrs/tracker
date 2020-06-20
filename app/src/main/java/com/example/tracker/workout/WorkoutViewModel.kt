@@ -1,12 +1,19 @@
 package com.example.tracker.workout
 
 
-import androidx.lifecycle.*
-import com.example.tracker.common.TrackerApp
+import android.provider.Settings.System.DATE_FORMAT
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.tracker.common.entities.WSet
-import com.example.tracker.common.entities.WorkoutAndEntries
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneId
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
+import java.util.*
+
 
 class WorkoutViewModel(
     private val workoutRepository: WorkoutRepository,
@@ -17,14 +24,14 @@ class WorkoutViewModel(
 
     private val workoutIdLVD: MutableLiveData<Long> = MutableLiveData(workoutId)
 
-    val workoutAndEntries = Transformations.switchMap(workoutIdLVD){
-        id -> workoutRepository.getWorkoutById(workoutId)
+    val workoutAndEntries = Transformations.switchMap(workoutIdLVD) { id ->
+        workoutRepository.getWorkoutById(workoutId)
     }
-   /* val workoutAndEntries = workoutIdLVD.switchMap { id ->
-        liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
-            emit(workoutRepository.getWorkoutById(workoutId).value)
-        }
-    }*/
+    /* val workoutAndEntries = workoutIdLVD.switchMap { id ->
+         liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
+             emit(workoutRepository.getWorkoutById(workoutId).value)
+         }
+     }*/
 
     //var workoutAndEntries = workoutRepository.getWorkoutById(workoutId)
 
@@ -40,10 +47,10 @@ class WorkoutViewModel(
 
     }*/
 
-   /* fun reloadWorkoutAndEntries(): LiveData<WorkoutAndEntries>{
-        println("> WorkoutViewModel:: workoutId ${workoutId}")
-        return workoutRepository.getWorkoutById(workoutId)
-    }*/
+    /* fun reloadWorkoutAndEntries(): LiveData<WorkoutAndEntries>{
+         println("> WorkoutViewModel:: workoutId ${workoutId}")
+         return workoutRepository.getWorkoutById(workoutId)
+     }*/
 
     fun createWorkout(name: String) {
         viewModelScope.launch {
@@ -57,6 +64,16 @@ class WorkoutViewModel(
 
             //println(workoutAndEntries.value)
         }
+    }
+
+    fun deleteWorkout(workoutId: Long) {
+        viewModelScope.launch {
+            workoutRepository.deleteWorkout(workoutId)
+        }
+    }
+
+    fun getDefaultWorkoutName(): String {
+        return DateTimeFormatter.ofPattern("EEEE d MMMM").withZone(ZoneId.systemDefault()).format(LocalDateTime.now())
     }
 
     fun createSet(entryId: Long, weight: Double, reps: Short) {

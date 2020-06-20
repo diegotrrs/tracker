@@ -13,6 +13,10 @@ class WorkoutRepository private constructor(private val workoutsDao: WorkoutsDao
         return workoutsDao.insert(Workout(name, userId))
     }
 
+    suspend fun deleteWorkout(workoutID: Long) {
+        workoutsDao.deleteWorkout(workoutID)
+    }
+
     companion object {
         @Volatile
         private var instance: WorkoutRepository? = null

@@ -32,7 +32,7 @@ class CreateExerciseDialog : DialogFragment() {
 
         var binding = DataBindingUtil.inflate<CreateExerciseDialogBinding>(
             inflater,
-            R.layout.set_dialog,
+            R.layout.create_exercise_dialog,
             container,
             false
         )

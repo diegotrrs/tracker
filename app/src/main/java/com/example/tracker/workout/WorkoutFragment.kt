@@ -1,6 +1,6 @@
 package com.example.tracker.workout
 
-import android.app.Activity
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -22,17 +22,18 @@ import com.example.tracker.common.entities.WSet
 import com.example.tracker.databinding.WorkoutFragmentBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.workout_fragment.*
+import org.threeten.bp.LocalDateTime
 
 
 class WorkoutFragment : Fragment(), SetsListener, WorkoutEntriesListener {
-    val args: WorkoutFragmentArgs by navArgs()
+    private val args: WorkoutFragmentArgs by navArgs()
 
     private val workoutViewModel: WorkoutViewModel by viewModels {
         var workoutId: Long = args.workoutId.toLong();
         InjectorUtils.provideWorkoutViewModelFactory(requireContext(), workoutId)
     }
 
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
@@ -41,9 +42,11 @@ class WorkoutFragment : Fragment(), SetsListener, WorkoutEntriesListener {
         const val SELECTED_EXERCISE = "selectedExercise"
     }
 
-    inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
+    private inline val Fragment.appCompatActivity: AppCompatActivity get() = (activity as AppCompatActivity)
 
-    inline val isCreationMode: Boolean get() = (args.workoutId === "-1")
+    private inline val isCreationMode: Boolean get() = (args.workoutId === "-1")
+
+    private var hasWorkoutBeenCreated : Boolean = true
 
     private lateinit var binding: WorkoutFragmentBinding
 
@@ -57,26 +60,40 @@ class WorkoutFragment : Fragment(), SetsListener, WorkoutEntriesListener {
             appCompatActivity.setSupportActionBar(toolbar)
             lifecycleOwner = viewLifecycleOwner
             viewModel = workoutViewModel
-            isCreationMode = this@WorkoutFragment.isCreationMode
+            isCreation = this@WorkoutFragment.isCreationMode
 
             val adapter = WorkoutEntriesAdapter(requireContext(), this@WorkoutFragment, this@WorkoutFragment)
             entriesRecyclerView.adapter = adapter
             entriesRecyclerView.isNestedScrollingEnabled = true
             entriesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
 
+            println(" args.workoutId ${args.workoutId} ")
+            println(" isCreationMode ${isCreationMode}")
+
+
             workoutViewModel.workoutAndEntries.observe(viewLifecycleOwner, Observer { workoutAndEntries ->
                 println(" ON CHANGED WORKOUT_ENTRIES ${workoutAndEntries}");
                 if (workoutAndEntries !== null) {
-                    if(workoutAndEntries.entries.isNotEmpty()){
+                    if (workoutAndEntries.entries.isNotEmpty()) {
                         adapter.setEntriesAndSets(workoutAndEntries.entries)
                     }
                     var workoutName = workoutAndEntries.workout.name;
-                    var workoutNameTextFieldValue: String =  binding.entryNameTextView.getText().toString();
-                    println("are different ${workoutNameTextFieldValue === workoutName} ?  ${workoutNameTextFieldValue} ${workoutName}")
-                    if(!workoutAndEntries.workout.name.isEmpty() && workoutNameTextFieldValue === workoutName){
-                        println("Updating the name...");
+                    var workoutNameTextFieldValue: String = binding.entryNameTextView.getText().toString();
+                    println("names >>>")
+                    println("_${workoutNameTextFieldValue}_")
+                    println("_${workoutName}_")
+                    println("are different ${workoutNameTextFieldValue === workoutName}")
+
+                    if(isCreationMode){
+                        // Avoid updating the text field again when the workout was just created.
+                        if (!workoutAndEntries.workout.name.isEmpty() && workoutNameTextFieldValue === workoutName) {
+                            println("Updating the name...");
+                            binding.entryNameTextView.setText(workoutAndEntries.workout.name)
+                        }
+                    } else{
                         binding.entryNameTextView.setText(workoutAndEntries.workout.name)
                     }
+
                 }
             })
 
@@ -102,13 +119,30 @@ class WorkoutFragment : Fragment(), SetsListener, WorkoutEntriesListener {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.getItemId().equals(R.id.action_save)) {
-            binding.container.hideKeyboard();
-            val name = binding.entryNameTextView.text.toString()
-            workoutViewModel.createWorkout(name)
-            Snackbar.make(binding.root, R.string.workout_created, Snackbar.LENGTH_LONG)
-                .show()
+            saveWorkout();
+        } else if (menuItem.getItemId().equals(R.id.action_delete)) {
+            var workoutId = workoutViewModel.workoutAndEntries.value?.workout?.id
+            println("workoutId ${workoutId}")
+            if (workoutId != null) {
+                workoutViewModel.deleteWorkout(workoutId)
+                Snackbar.make(binding.root, R.string.workout_deleted, Snackbar.LENGTH_LONG).show()
+            }
+
         }
         return super.onOptionsItemSelected(menuItem)
+    }
+
+    private fun saveWorkout(){
+        binding.container.hideKeyboard();
+        val name = binding.entryNameTextView.text.toString()
+        workoutViewModel.createWorkout(name)
+        Snackbar.make(binding.root, R.string.workout_created, Snackbar.LENGTH_LONG).show()
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        binding.toolbar.title = ""
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
